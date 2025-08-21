@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:full_ecommerce_app/src/config/language/locale_keys.g.dart';
 import 'package:full_ecommerce_app/src/config/res/assets.gen.dart';
+import 'package:full_ecommerce_app/src/core/extensions/text_style_extensions.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
-import 'package:full_ecommerce_app/src/features/home/presentation/imports/presentaion_imports.dart';
 
 import '../../core/navigation/navigator.dart';
 
@@ -31,19 +33,35 @@ class _SplashScreenState extends State<SplashScreen> {
     // ); // TODO add notification navigator
     // await ConstantManager.serviceLocator<NotificationService>()
     //     .setupNotifications(); //TODO add notification service
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Go.offAll(const LoginScreen());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      height: 1.sh,
-      width: 1.sw,
-      child: Center(
-        child: AppAssets.svg.logo.svg(height: 0.3.sh, width: 0.3.sw),
+    return Scaffold(
+      body: Container(
+        color: Colors.white,
+        height: 1.sh,
+        width: 1.sw,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppAssets.lottie.cartify.lottie(
+              height: 0.5.sh,
+              filterQuality: FilterQuality.high,
+              fit: BoxFit.contain,
+              width: 0.55.sw,
+            ),
+            Text(
+              LocaleKeys.welcomeCartify.tr(),
+              style: const TextStyle().s28.setMainTextColor
+                  .setFontWeight(FontWeight.bold)
+                  .setLetterSpacing(1.5),
+            ),
+          ],
+        ),
       ),
     );
   }

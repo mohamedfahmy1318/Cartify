@@ -4,12 +4,12 @@ final GetIt sl = GetIt.instance;
 
 class ConstantManager {
   static const String bundleId = "";
-  static const String appName = "Best Promo";
+  static const String appName = "Cartify";
   static const String fontFamily = "ArbFONTS";
   static const String token = "token";
-  static const String projectName = "";
+  static const String projectName = "Cartify";
   static const int splashTimer = 4;
-  static const String baseUrl = "https://xgo.mlmcosmo.com/api/";
+  static const String baseUrl = "https://ecommerce.routemisr.com/api/v1/";
   static const String emptyText = "";
   static const int zero = 0;
   static const double zeroAsDouble = 0.0;

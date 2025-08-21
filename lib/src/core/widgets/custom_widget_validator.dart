@@ -8,12 +8,13 @@ class CustomWidgetValidator<T> extends StatelessWidget {
   final FormFieldValidator<T> validator;
   final Widget? child;
   final Widget Function(FormFieldState<T> value) builder;
-  const CustomWidgetValidator(
-      {super.key,
-      this.initialValue,
-      required this.validator,
-      this.child,
-      required this.builder});
+  const CustomWidgetValidator({
+    super.key,
+    this.initialValue,
+    required this.validator,
+    this.child,
+    required this.builder,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +35,50 @@ class DefaultErrorBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InputDecorator(
-        decoration: InputDecoration(
-          contentPadding:
-              value.hasError ? EdgeInsets.all(10.r) : EdgeInsets.zero,
-          errorText: value.errorText,
-          border: const OutlineInputBorder(borderSide: BorderSide.none),
-          errorBorder: UnderlineInputBorder(
-            borderSide: value.hasError
-                ? const BorderSide(color: AppColors.error)
-                : BorderSide.none,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.r),
+            border: value.hasError
+                ? Border.all(color: AppColors.error, width: .005)
+                : null,
           ),
+          child: child,
         ),
-        child: child);
+        AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          height: value.hasError ? null : 0,
+          child: value.hasError
+              ? Padding(
+                  padding: EdgeInsets.only(top: 6.h, left: 12.w),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        color: AppColors.error,
+                        size: 16.sp,
+                      ),
+                      SizedBox(width: 6.w),
+                      Expanded(
+                        child: Text(
+                          value.errorText ?? '',
+                          style: TextStyle(
+                            color: AppColors.error,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              : const SizedBox.shrink(),
+        ),
+      ],
+    );
   }
 }

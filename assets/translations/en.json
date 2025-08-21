@@ -74,5 +74,6 @@
   "new_password": "New Password",
   "confirm_password": "Confirm Password",
   "do_not_have_an_account": "Do not have an account",
-  "create_account": "Create Account"
+  "create_account": "Create Account",
+  "welcome_to_cartify": "Welcome to Cartify"
 }

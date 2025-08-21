@@ -13,7 +13,6 @@ import 'package:flutter/foundation.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
@@ -46,10 +45,10 @@ void main() async {
   }
   runApp(
     EasyLocalization(
-      supportedLocales: Languages.suppoerLocales,
+      supportedLocales: Languages.supportedLocales,
       path: 'assets/translations',
-      saveLocale: true,
-      fallbackLocale: const Locale('ar'),
+      //fallbackLocale: const Locale('en'),
+      startLocale: const Locale('en'),
       child: const App(),
     ),
   );

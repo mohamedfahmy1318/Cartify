@@ -10,7 +10,8 @@ abstract class LocaleKeys {
   static const String _welcome = 'welcome';
   static String get welcome => _welcome.tr();
 
-  static const String _pleaseEnterTheCodeSentTo = 'please_enter_the_code_sent_to';
+  static const String _pleaseEnterTheCodeSentTo =
+      'please_enter_the_code_sent_to';
   static String get pleaseEnterTheCodeSentTo => _pleaseEnterTheCodeSentTo.tr();
 
   static const String _register = 'register';
@@ -61,17 +62,23 @@ abstract class LocaleKeys {
   static const String _checkInternet = 'check_internet';
   static String get checkInternet => _checkInternet.tr();
 
-  static const String _errorExeptionNoconnection = 'error_exeption_noconnection';
-  static String get errorExeptionNoconnection => _errorExeptionNoconnection.tr();
+  static const String _errorExeptionNoconnection =
+      'error_exeption_noconnection';
+  static String get errorExeptionNoconnection =>
+      _errorExeptionNoconnection.tr();
 
-  static const String _errorexeptionNointernetdesc = 'errorexeption_nointernetdesc';
-  static String get errorexeptionNointernetdesc => _errorexeptionNointernetdesc.tr();
+  static const String _errorexeptionNointernetdesc =
+      'errorexeption_nointernetdesc';
+  static String get errorexeptionNointernetdesc =>
+      _errorexeptionNointernetdesc.tr();
 
   static const String _errorexceptionNotcontain = 'errorexception_notcontain';
   static String get errorexceptionNotcontain => _errorexceptionNotcontain.tr();
 
-  static const String _errorexceptionNotcontaindesc = 'errorexception_notcontaindesc';
-  static String get errorexceptionNotcontaindesc => _errorexceptionNotcontaindesc.tr();
+  static const String _errorexceptionNotcontaindesc =
+      'errorexception_notcontaindesc';
+  static String get errorexceptionNotcontaindesc =>
+      _errorexceptionNotcontaindesc.tr();
 
   static const String _visitorText = 'visitor_text';
   static String get visitorText => _visitorText.tr();
@@ -124,11 +131,15 @@ abstract class LocaleKeys {
   static const String _phoneNumber = 'phone_number';
   static String get phoneNumber => _phoneNumber.tr();
 
-  static const String _fullNameShouldBeThreeAtLeast = 'full_name_should_be_three_at_least';
-  static String get fullNameShouldBeThreeAtLeast => _fullNameShouldBeThreeAtLeast.tr();
+  static const String _fullNameShouldBeThreeAtLeast =
+      'full_name_should_be_three_at_least';
+  static String get fullNameShouldBeThreeAtLeast =>
+      _fullNameShouldBeThreeAtLeast.tr();
 
-  static const String _cannotSelectAttachmentsExceptPdf = 'cannot_select_attachments_except_pdf';
-  static String get cannotSelectAttachmentsExceptPdf => _cannotSelectAttachmentsExceptPdf.tr();
+  static const String _cannotSelectAttachmentsExceptPdf =
+      'cannot_select_attachments_except_pdf';
+  static String get cannotSelectAttachmentsExceptPdf =>
+      _cannotSelectAttachmentsExceptPdf.tr();
 
   static const String _doYouHaveTaxNumber = 'do_you_have_tax_number';
   static String get doYouHaveTaxNumber => _doYouHaveTaxNumber.tr();
@@ -148,14 +159,20 @@ abstract class LocaleKeys {
   static const String _confirmNewPassword = 'confirm_new_password';
   static String get confirmNewPassword => _confirmNewPassword.tr();
 
-  static const String _pleaseEnterYourCurrentPassword = 'please_enter_your_current_password';
-  static String get pleaseEnterYourCurrentPassword => _pleaseEnterYourCurrentPassword.tr();
+  static const String _pleaseEnterYourCurrentPassword =
+      'please_enter_your_current_password';
+  static String get pleaseEnterYourCurrentPassword =>
+      _pleaseEnterYourCurrentPassword.tr();
 
-  static const String _pleaseEnterYourNewPassword = 'please_enter_your_new_password';
-  static String get pleaseEnterYourNewPassword => _pleaseEnterYourNewPassword.tr();
+  static const String _pleaseEnterYourNewPassword =
+      'please_enter_your_new_password';
+  static String get pleaseEnterYourNewPassword =>
+      _pleaseEnterYourNewPassword.tr();
 
-  static const String _pleaseEnterYourConfirmPassword = 'please_enter_your_confirm_password';
-  static String get pleaseEnterYourConfirmPassword => _pleaseEnterYourConfirmPassword.tr();
+  static const String _pleaseEnterYourConfirmPassword =
+      'please_enter_your_confirm_password';
+  static String get pleaseEnterYourConfirmPassword =>
+      _pleaseEnterYourConfirmPassword.tr();
 
   static const String _changePhone = 'change_phone';
   static String get changePhone => _changePhone.tr();
@@ -172,11 +189,15 @@ abstract class LocaleKeys {
   static const String _verifyEmailOwnership = 'verify_email_ownership';
   static String get verifyEmailOwnership => _verifyEmailOwnership.tr();
 
-  static const String _areYouSureYouWantToDeleteAccount = 'are_you_sure_you_want_to_delete_account';
-  static String get areYouSureYouWantToDeleteAccount => _areYouSureYouWantToDeleteAccount.tr();
+  static const String _areYouSureYouWantToDeleteAccount =
+      'are_you_sure_you_want_to_delete_account';
+  static String get areYouSureYouWantToDeleteAccount =>
+      _areYouSureYouWantToDeleteAccount.tr();
 
-  static const String _pleaseEnterTheVerificationCodeSentToYourEmail = 'please_enter_the_verification_code_sent_to_your_email';
-  static String get pleaseEnterTheVerificationCodeSentToYourEmail => _pleaseEnterTheVerificationCodeSentToYourEmail.tr();
+  static const String _pleaseEnterTheVerificationCodeSentToYourEmail =
+      'please_enter_the_verification_code_sent_to_your_email';
+  static String get pleaseEnterTheVerificationCodeSentToYourEmail =>
+      _pleaseEnterTheVerificationCodeSentToYourEmail.tr();
 
   static const String _currentPhone = 'current_phone';
   static String get currentPhone => _currentPhone.tr();
@@ -190,8 +211,10 @@ abstract class LocaleKeys {
   static const String _selectLanguage = 'select_language';
   static String get selectLanguage => _selectLanguage.tr();
 
-  static const String _pleaseEnterYourPhoneNumber = 'please_enter_your_phone_number';
-  static String get pleaseEnterYourPhoneNumber => _pleaseEnterYourPhoneNumber.tr();
+  static const String _pleaseEnterYourPhoneNumber =
+      'please_enter_your_phone_number';
+  static String get pleaseEnterYourPhoneNumber =>
+      _pleaseEnterYourPhoneNumber.tr();
 
   static const String _pleaseEnterYourPassword = 'please_enter_your_password';
   static String get pleaseEnterYourPassword => _pleaseEnterYourPassword.tr();
@@ -202,14 +225,18 @@ abstract class LocaleKeys {
   static const String _phoneNumberVerification = 'phone_number_verification';
   static String get phoneNumberVerification => _phoneNumberVerification.tr();
 
-  static const String _pleaseEnterTheVerificationCodeSentToYourMobilePhone = 'please_enter_the_verification_code_sent_to_your_mobile_phone';
-  static String get pleaseEnterTheVerificationCodeSentToYourMobilePhone => _pleaseEnterTheVerificationCodeSentToYourMobilePhone.tr();
+  static const String _pleaseEnterTheVerificationCodeSentToYourMobilePhone =
+      'please_enter_the_verification_code_sent_to_your_mobile_phone';
+  static String get pleaseEnterTheVerificationCodeSentToYourMobilePhone =>
+      _pleaseEnterTheVerificationCodeSentToYourMobilePhone.tr();
 
   static const String _requestActiveCode = 'request_active_code';
   static String get requestActiveCode => _requestActiveCode.tr();
 
-  static const String _termsAndConditionsForUsers = 'terms_and_conditions_for_users';
-  static String get termsAndConditionsForUsers => _termsAndConditionsForUsers.tr();
+  static const String _termsAndConditionsForUsers =
+      'terms_and_conditions_for_users';
+  static String get termsAndConditionsForUsers =>
+      _termsAndConditionsForUsers.tr();
 
   static const String _remainingTime = 'remaining_time';
   static String get remainingTime => _remainingTime.tr();
@@ -228,5 +255,6 @@ abstract class LocaleKeys {
 
   static const String _createAccount = 'create_account';
   static String get createAccount => _createAccount.tr();
-
+  static const String _welcomeCartify = 'welcome_to_cartify';
+  static String get welcomeCartify => _welcomeCartify.tr();
 }

@@ -1,70 +1,86 @@
 class UserModel {
-  final int id;
+  final String? id;
   final String name;
-  final String lastName;
-  final String? image;
   final String email;
-  final String phone;
-  final String? token;
+  final String role;
+  final String? image;
+  final String? phone;
 
   UserModel({
-    required this.id,
+    this.id,
     required this.name,
-    required this.lastName,
-    this.image,
     required this.email,
-    required this.phone,
-    this.token,
+    required this.role,
+    this.image,
+    this.phone,
   });
 
-  String get fullName => '$name $lastName';
-
   factory UserModel.initial() => UserModel(
-    id: 0,
+    id: null,
     name: '',
-    lastName: '',
-    image: null,
     email: '',
-    phone: '',
-    token: null,
+    role: 'user',
+    image: null,
+    phone: null,
   );
 
   UserModel copyWith({
-    int? id,
+    String? id,
     String? name,
-    String? lastName,
-    String? image,
     String? email,
+    String? role,
+    String? image,
     String? phone,
-    String? token,
   }) {
     return UserModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      lastName: lastName ?? this.lastName,
-      image: image ?? this.image,
       email: email ?? this.email,
+      role: role ?? this.role,
+      image: image ?? this.image,
       phone: phone ?? this.phone,
-      token: token ?? this.token,
     );
   }
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    id: int.tryParse(json["id"]?.toString() ?? "0") ?? 0,
+    id: json["id"]?.toString(),
     name: json["name"]?.toString() ?? '',
-    lastName: json["last_name"]?.toString() ?? '',
-    image: json["image"]?.toString(),
     email: json["email"]?.toString() ?? '',
-    phone: json["phone"]?.toString() ?? '',
-    token: json["token"]?.toString(),
+    role: json["role"]?.toString() ?? 'user',
+    image: json["image"]?.toString(),
+    phone: json["phone"]?.toString(),
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "name": name,
-    "last_name": lastName,
-    "image": image,
     "email": email,
+    "role": role,
+    "image": image,
     "phone": phone,
+  };
+}
+
+class UserAuthResponse {
+  final String message;
+  final UserModel user;
+  final String token;
+
+  UserAuthResponse({
+    required this.message,
+    required this.user,
+    required this.token,
+  });
+
+  factory UserAuthResponse.fromJson(Map<String, dynamic> json) => UserAuthResponse(
+    message: json["message"]?.toString() ?? '',
+    user: UserModel.fromJson(json["user"] ?? {}),
+    token: json["token"]?.toString() ?? '',
+  );
+
+  Map<String, dynamic> toJson() => {
+    "message": message,
+    "user": user.toJson(),
+    "token": token,
   };
 }

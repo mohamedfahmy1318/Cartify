@@ -74,5 +74,6 @@
   "new_password": "كلمة المرور الجديدة",
   "confirm_password": "تأكيد كلمة المرور",
   "do_not_have_an_account": "ليس لديك حساب؟",
-  "create_account": "انشاء حساب"
+  "create_account": "انشاء حساب",
+  "welcome_to_cartify": "مرحبًا بك في Cartify"
 }
