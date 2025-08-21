@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:full_ecommerce_app/src/features/home/presentation/imports/presentaion_imports.dart';
+import 'package:full_ecommerce_app/src/homming.dart';
 
 import 'named_routes.dart';
 import 'page_router/imports_page_router_builder.dart';
@@ -21,6 +22,10 @@ class RouterGenerator {
       ),
       NamedRoutes.login => _pageRouter.build(
         const LoginScreen(),
+        settings: settings,
+      ),
+      NamedRoutes.homing => _pageRouter.build(
+        const HomingScreen(),
         settings: settings,
       ),
     };

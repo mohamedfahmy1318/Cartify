@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
+import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
+import 'package:full_ecommerce_app/src/features/auth/login/domain/use_cases/login_use_case.dart';
+import 'package:full_ecommerce_app/src/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/widgets/login_body.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -7,7 +11,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _LoginView();
+    return BlocProvider(
+      create: (context) => LoginCubit(sl<LoginUseCase>()),
+      child: const _LoginView(),
+    );
   }
 }
 

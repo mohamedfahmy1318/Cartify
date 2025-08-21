@@ -31,7 +31,7 @@ class MessageUtils {
   }
 
   static void showSimpleToast(
-    String s, {
+    BuildContext context, {
     required String msg,
     Color? color,
     Color? textColor,

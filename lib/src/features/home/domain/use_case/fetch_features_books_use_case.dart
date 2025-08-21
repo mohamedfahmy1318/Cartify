@@ -6,8 +6,9 @@ class GetBooksUseCase
   GetBooksUseCase({required this.homeRepo});
 
   @override
-  Future<Result<BaseModel<List<PlayerEntity>>, Failure>> call(
-      [String? param]) async {
+  Future<Result<BaseModel<List<PlayerEntity>>, Failure>> call([
+    String? param,
+  ]) async {
     return await homeRepo.fetchPlayers(param);
   }
 }
