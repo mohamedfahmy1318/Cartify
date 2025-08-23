@@ -13,7 +13,7 @@ class ConstantManager {
   static const String emptyText = "";
   static const int zero = 0;
   static const double zeroAsDouble = 0.0;
-  static const int pinCodeFieldsCount = 4;
+  static const int pinCodeFieldsCount = 6;
   static const int maxLines = 4;
   static const double snackbarElevation = 4;
   static const int snackbarDuration = 4;

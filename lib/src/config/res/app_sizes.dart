@@ -126,4 +126,5 @@ class AppCircular {
   static double r10 = 10.0.r;
   static double r12 = 12.0.r;
   static double r20 = 20.0.r;
+  static double r25 = 25.0.r;
 }

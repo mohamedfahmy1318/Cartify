@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:full_ecommerce_app/src/config/language/locale_keys.g.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
+import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
+import 'package:full_ecommerce_app/src/features/auth/register/presentation/screens/register_screen.dart';
 
 class DontHaveAccount extends StatelessWidget {
   const DontHaveAccount({super.key});
@@ -13,6 +15,9 @@ class DontHaveAccount extends StatelessWidget {
       children: [
         Text('${LocaleKeys.doNotHaveAnAccount.tr()}? '),
         GestureDetector(
+          onTap: () {
+            Go.off(const RegisterScreen());
+          },
           child: AppText(
             LocaleKeys.createAccount.tr(),
             color: AppColors.primary,

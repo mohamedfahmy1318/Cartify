@@ -8,6 +8,8 @@ import '../res/color_manager.dart';
 class AppTheme {
   static ThemeData get light {
     return ThemeData(
+      splashColor: Colors.transparent, // إلغاء تأثير الـ splash
+      highlightColor: Colors.transparent, // إلغاء تأثير الـ tap/hover
       primarySwatch: AppColors.primary.toMaterialColor(),
       primaryColor: AppColors.primary,
       useMaterial3: true,
@@ -17,11 +19,12 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: AppColors.scaffoldBackground,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        elevation: 0.0,
         backgroundColor: AppColors.white,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.grey,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
+        selectedItemColor: AppColors.grey,
+        unselectedItemColor: AppColors.scaffoldBackground,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
       ),
       textButtonTheme: TextButtonThemeData(

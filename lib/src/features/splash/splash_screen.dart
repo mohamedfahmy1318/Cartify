@@ -6,8 +6,8 @@ import 'package:full_ecommerce_app/src/config/res/assets.gen.dart';
 import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
 import 'package:full_ecommerce_app/src/core/extensions/text_style_extensions.dart';
 import 'package:full_ecommerce_app/src/core/shared/cubits/user_cubit/user_cubit.dart';
+import 'package:full_ecommerce_app/src/features/app_home/presentation/screens/app_home_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
-import 'package:full_ecommerce_app/src/homming.dart';
 
 import '../../core/navigation/navigator.dart';
 
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //     .setupNotifications(); //TODO add notification service
     Future.delayed(const Duration(seconds: 2), () {
       if (isLoggedIn) {
-        Go.offAll(const HomingScreen());
+        Go.offAll(const AppHomeScreen());
       } else {
         Go.offAll(const LoginScreen());
       }

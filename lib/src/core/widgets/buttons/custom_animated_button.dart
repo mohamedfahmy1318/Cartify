@@ -54,8 +54,8 @@ class CustomAnimatedButton extends StatefulWidget {
     this.disabledColor,
     this.disabledTextColor,
     super.key,
-  })  : assert(elevation == null || elevation >= 0.0),
-        assert(disabledElevation == null || disabledElevation >= 0.0);
+  }) : assert(elevation == null || elevation >= 0.0),
+       assert(disabledElevation == null || disabledElevation >= 0.0);
 
   @override
   CustomButtonState createState() => CustomButtonState();
@@ -75,13 +75,18 @@ class CustomButtonState extends State<CustomAnimatedButton>
   void initState() {
     super.initState();
 
-    _controller =
-        AnimationController(vsync: this, duration: widget.animationDuration);
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.animationDuration,
+    );
 
-    _animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+    _animation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
         parent: _controller,
         curve: widget.curve,
-        reverseCurve: widget.reverseCurve));
+        reverseCurve: widget.reverseCurve,
+      ),
+    );
 
     _animation.addStatusListener((status) {
       if (status == AnimationStatus.dismissed) {
@@ -102,14 +107,18 @@ class CustomButtonState extends State<CustomAnimatedButton>
   }
 
   void startLoading() {
-    setState(() {
-      buttonStatus = ButtonStatus.loading;
-    });
-    _controller.forward();
+    if (mounted) {
+      setState(() {
+        buttonStatus = ButtonStatus.loading;
+      });
+      _controller.forward();
+    }
   }
 
   void stopLoading() {
-    _controller.reverse();
+    if (mounted && _controller.isCompleted) {
+      _controller.reverse();
+    }
   }
 
   lerpWidth(a, b, t) {
@@ -145,7 +154,9 @@ class CustomButtonState extends State<CustomAnimatedButton>
       startLoading();
       await widget.onTap();
     } finally {
-      stopLoading();
+      if (mounted) {
+        stopLoading();
+      }
     }
   }
 
@@ -157,38 +168,46 @@ class CustomButtonState extends State<CustomAnimatedButton>
         height: widget.height,
         shape: RoundedRectangleBorder(
           side: widget.borderSide,
-          borderRadius: BorderRadius.circular(widget.roundLoadingShape
-              ? lerpDouble(
-                  widget.borderRadius,
-                  widget.height / 2,
-                  _animation.value,
-                )!
-              : widget.borderRadius),
+          borderRadius: BorderRadius.circular(
+            widget.roundLoadingShape
+                ? lerpDouble(
+                    widget.borderRadius,
+                    widget.height / 2,
+                    _animation.value,
+                  )!
+                : widget.borderRadius,
+          ),
         ),
         child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: widget.color,
-              elevation: widget.elevation,
-              padding: widget.padding,
-              disabledBackgroundColor: widget.disabledColor ?? AppColors.black,
-              shape: RoundedRectangleBorder(
-                side: widget.borderSide,
-                borderRadius: BorderRadius.circular(widget.roundLoadingShape
-                    ? lerpDouble(widget.borderRadius, widget.height / 2,
-                        _animation.value)!
-                    : widget.borderRadius),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: widget.color,
+            elevation: widget.elevation,
+            padding: widget.padding,
+            disabledBackgroundColor: widget.disabledColor ?? AppColors.black,
+            shape: RoundedRectangleBorder(
+              side: widget.borderSide,
+              borderRadius: BorderRadius.circular(
+                widget.roundLoadingShape
+                    ? lerpDouble(
+                        widget.borderRadius,
+                        widget.height / 2,
+                        _animation.value,
+                      )!
+                    : widget.borderRadius,
               ),
             ),
-            clipBehavior: widget.clipBehavior,
-            focusNode: widget.focusNode,
-            onPressed: buttonStatus == ButtonStatus.idle
-                ? () {
-                    doWhileLoading();
-                  }
-                : null,
-            child: buttonStatus == ButtonStatus.idle
-                ? widget.child
-                : widget.loader),
+          ),
+          clipBehavior: widget.clipBehavior,
+          focusNode: widget.focusNode,
+          onPressed: buttonStatus == ButtonStatus.idle
+              ? () {
+                  doWhileLoading();
+                }
+              : null,
+          child: buttonStatus == ButtonStatus.idle
+              ? widget.child
+              : widget.loader,
+        ),
       ),
     );
   }

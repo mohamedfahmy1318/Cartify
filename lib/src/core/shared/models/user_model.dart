@@ -65,18 +65,22 @@ class UserAuthResponse {
   final String message;
   final UserModel user;
   final String token;
+  final String statusMsg;
 
   UserAuthResponse({
     required this.message,
     required this.user,
     required this.token,
+    required this.statusMsg,
   });
 
-  factory UserAuthResponse.fromJson(Map<String, dynamic> json) => UserAuthResponse(
-    message: json["message"]?.toString() ?? '',
-    user: UserModel.fromJson(json["user"] ?? {}),
-    token: json["token"]?.toString() ?? '',
-  );
+  factory UserAuthResponse.fromJson(Map<String, dynamic> json) =>
+      UserAuthResponse(
+        message: json["message"]?.toString() ?? '',
+        user: UserModel.fromJson(json["user"] ?? {}),
+        token: json["token"]?.toString() ?? '',
+        statusMsg: json["statusMsg"]?.toString() ?? '',
+      );
 
   Map<String, dynamic> toJson() => {
     "message": message,

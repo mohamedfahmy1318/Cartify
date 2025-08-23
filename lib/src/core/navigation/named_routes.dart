@@ -1,7 +1,8 @@
 enum NamedRoutes {
-  splash('/'),
   login('/login'),
-  homing('/homing');
+  appHome('/app-home'),
+  register('/register'),
+  pinCode('/pin-code');
 
   final String routeName;
 

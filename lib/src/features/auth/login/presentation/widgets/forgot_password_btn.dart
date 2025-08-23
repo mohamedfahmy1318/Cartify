@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:full_ecommerce_app/src/config/language/locale_keys.g.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
+import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
+import 'package:full_ecommerce_app/src/features/auth/forgot_password/presentation/screens/forgot_password_screen.dart';
 
 class ForgotPasswordButton extends StatelessWidget {
   const ForgotPasswordButton({super.key});
@@ -16,6 +18,7 @@ class ForgotPasswordButton extends StatelessWidget {
           onTap: () {
             // Handle forgot password action
             // For example, navigate to a forgot password screen
+            Go.to(const ForgotScreen());
           },
           child: AppText(
             "${LocaleKeys.forgotPassword.tr()}?",

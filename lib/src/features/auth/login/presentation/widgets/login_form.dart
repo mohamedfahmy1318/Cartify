@@ -12,11 +12,11 @@ import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_messages.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_widget_validator.dart';
 import 'package:full_ecommerce_app/src/core/widgets/text_fields/default_text_field.dart';
+import 'package:full_ecommerce_app/src/features/app_home/presentation/screens/app_home_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/data/models/login_request_model.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/widgets/dont_have_account.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/widgets/forgot_password_btn.dart';
-import 'package:full_ecommerce_app/src/homming.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -61,7 +61,7 @@ class _LoginFormState extends State<LoginForm> {
       listener: (context, state) {
         if (state.baseStatus.isSuccess) {
           MessageUtils.showSimpleToast(msg: 'Login successful!', context);
-          Go.offAll(const HomingScreen());
+          Go.offAll(const AppHomeScreen());
         }
       },
       builder: (context, state) {
