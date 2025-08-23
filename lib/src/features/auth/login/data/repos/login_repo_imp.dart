@@ -1,6 +1,5 @@
 import 'package:full_ecommerce_app/src/core/error/failure.dart';
 import 'package:full_ecommerce_app/src/core/extensions/error_handler_extension.dart';
-import 'package:full_ecommerce_app/src/core/shared/base_model.dart';
 import 'package:full_ecommerce_app/src/core/shared/models/user_model.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/data/data_sources/login_remote_ds.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/data/models/login_request_model.dart';

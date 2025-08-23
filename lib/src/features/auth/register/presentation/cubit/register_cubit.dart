@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
-import 'package:full_ecommerce_app/src/core/shared/models/user_model.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/data/models/register_request_model.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/domain/use_cases/register_use_case.dart';
 

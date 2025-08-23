@@ -28,7 +28,7 @@ class CustomHeaderApp extends StatelessWidget {
         ),
         Row(
           children: [
-            CustomSearchAppField(),
+            const CustomSearchAppField(),
             IconButton(
               icon: const Icon(Icons.shopping_cart, color: AppColors.primary),
               onPressed: () {

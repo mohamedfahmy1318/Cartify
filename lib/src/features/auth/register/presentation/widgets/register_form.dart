@@ -12,7 +12,6 @@ import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_messages.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_widget_validator.dart';
 import 'package:full_ecommerce_app/src/core/widgets/text_fields/default_text_field.dart';
-import 'package:full_ecommerce_app/src/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/data/models/register_request_model.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/presentation/cubit/register_cubit.dart';
