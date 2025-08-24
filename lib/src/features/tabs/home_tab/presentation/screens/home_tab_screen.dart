@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/category_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/home_tab_view_body.dart';
 
 class HomeTabScreen extends StatelessWidget {
@@ -6,7 +10,11 @@ class HomeTabScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const _HomeTabView();
+    return BlocProvider(
+      create: (context) =>
+          CategoryCubit(sl<GetCategoryUseCase>())..fetchCategories(limit: 6),
+      child: const _HomeTabView(),
+    );
   }
 }
 

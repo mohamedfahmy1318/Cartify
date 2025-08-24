@@ -8,4 +8,6 @@ class ApiConstants {
   static const String verifyCode = 'auth/verifyResetCode';
   static const String updateUserData = 'users/updateMe/';
   static const String getAllUsers = 'users';
+  //Categories
+  static const String getAllCategories = 'categories';
 }

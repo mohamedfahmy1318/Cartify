@@ -15,7 +15,7 @@ class CategoryAndBannerHeader extends StatelessWidget {
           title,
           style: Theme.of(
             context,
-          ).textTheme.bodyLarge!.copyWith(color: AppColors.primary),
+          ).textTheme.bodyLarge!.copyWith(color: AppColors.hintText),
         ),
         GestureDetector(
           onTap: onTap,
@@ -23,7 +23,7 @@ class CategoryAndBannerHeader extends StatelessWidget {
             'View All',
             style: Theme.of(
               context,
-            ).textTheme.bodyMedium?.copyWith(color: AppColors.secondary),
+            ).textTheme.bodyMedium?.copyWith(color: AppColors.hintText),
           ),
         ),
       ],

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/core/extensions/sized_box_helper.dart';
+import 'package:full_ecommerce_app/src/core/navigation/named_routes.dart';
+import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/banner_list_view.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category_grid_view.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category&banner_header.dart';
@@ -20,21 +22,20 @@ class HomeTabViewBody extends StatelessWidget {
       child: Column(
         children: [
           const CustomHeaderApp(),
-          15.szH,
+          10.szH,
           CustomBannerSlider(),
-          20.szH,
+          10.szH,
           CategoryAndBannerHeader(
             title: 'Categories',
             onTap: () {
-              // Handle view all tap
+              Go.toNamed(NamedRoutes.viewAllCategory);
             },
           ),
-          9.szH,
           const CategoryGridView(),
           CategoryAndBannerHeader(
             title: 'Banners',
             onTap: () {
-              // Handle view all tap
+              // Handle view all banners tap
             },
           ),
           const BannerListView(),

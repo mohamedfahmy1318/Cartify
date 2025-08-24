@@ -14,7 +14,7 @@ class CustomBannerSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 120.h,
+        height: 100.h,
         autoPlay: false,
         enlargeCenterPage: true,
         autoPlayInterval: const Duration(seconds: 3),

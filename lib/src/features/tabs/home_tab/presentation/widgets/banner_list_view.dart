@@ -9,7 +9,7 @@ class BannerListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 55.h,
+      height: 60.h,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: 5,

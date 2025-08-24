@@ -7,6 +7,7 @@ import 'package:full_ecommerce_app/src/core/helpers/validators.dart';
 import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
+import 'package:full_ecommerce_app/src/core/widgets/buttons/default_button.dart';
 import 'package:full_ecommerce_app/src/core/widgets/buttons/loading_button.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_messages.dart';
@@ -158,7 +159,7 @@ class _LoginFormState extends State<LoginForm> {
               if (isLoading)
                 Center(child: CustomLoading.showLoadingView())
               else
-                LoadingButton(
+                DefaultButton(
                   onTap: _handleLogin,
                   title: LocaleKeys.signIn.tr(),
                 ),
