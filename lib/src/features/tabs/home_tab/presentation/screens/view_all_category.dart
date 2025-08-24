@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/category_cubit.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category_grid_view.dart';
 
 class ViewAllCategory extends StatefulWidget {
@@ -17,7 +17,7 @@ class ViewAllCategory extends StatefulWidget {
 class _ViewAllCategoryState extends State<ViewAllCategory> {
   @override
   void initState() {
-    context.read<CategoryCubit>().fetchCategories();
+    context.read<HomeTabCubit>().fetchCategories();
     super.initState();
   }
 

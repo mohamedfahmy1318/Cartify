@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/category_cubit.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/category_state.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_state.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category_item.dart';
 
-class CategoryGridView extends StatelessWidget {
+class CategoryGridView extends StatefulWidget {
   const CategoryGridView({super.key});
 
   @override
+  State<CategoryGridView> createState() => _CategoryGridViewState();
+}
+
+class _CategoryGridViewState extends State<CategoryGridView> {
+  String? selectedCategoryId;
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryCubit, CategoryState>(
+    return BlocBuilder<HomeTabCubit, HomeTabState>(
       builder: (context, state) {
-        switch (state.baseStatus) {
+        switch (state.categoriesStatus) {
           case BaseStatus.loading:
             return CustomLoading.showLoadingView();
           case BaseStatus.success:
@@ -30,7 +36,7 @@ class CategoryGridView extends StatelessWidget {
     );
   }
 
-  Widget _buildSuccessGrid(CategoryState state) {
+  Widget _buildSuccessGrid(HomeTabState state) {
     if (state.categories.isEmpty) {
       return const NotContainData();
     }
@@ -39,9 +45,9 @@ class CategoryGridView extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          childAspectRatio: 1.3,
-          mainAxisSpacing: 2,
-          crossAxisSpacing: 15,
+          childAspectRatio: 1.2,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 12,
         ),
         itemCount: state.categories.length,
         itemBuilder: (context, index) {

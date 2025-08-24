@@ -33,9 +33,10 @@ class HomeTabViewBody extends StatelessWidget {
           ),
           const CategoryGridView(),
           CategoryAndBannerHeader(
-            title: 'Banners',
+            title: 'Brands',
             onTap: () {
               // Handle view all banners tap
+              Go.toNamed(NamedRoutes.viewAllBanners);
             },
           ),
           const BannerListView(),

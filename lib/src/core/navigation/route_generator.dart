@@ -5,8 +5,10 @@ import 'package:full_ecommerce_app/src/features/app_home/presentation/screens/ap
 import 'package:full_ecommerce_app/src/features/auth/forgot_password/presentation/screens/pin_code_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/presentation/screens/register_screen.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/category_cubit.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_banner.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_category.dart';
 import 'named_routes.dart';
 import 'page_router/imports_page_router_builder.dart';
@@ -39,8 +41,17 @@ class RouterGenerator {
       ),
       NamedRoutes.viewAllCategory => _pageRouter.build(
         BlocProvider(
-          create: (context) => CategoryCubit(sl<GetCategoryUseCase>()),
+          create: (context) =>
+              HomeTabCubit(sl<GetCategoryUseCase>(), sl<GetBannersUseCase>()),
           child: const ViewAllCategory(),
+        ),
+        settings: settings,
+      ),
+      NamedRoutes.viewAllBanners => _pageRouter.build(
+        BlocProvider(
+          create: (context) =>
+              HomeTabCubit(sl<GetCategoryUseCase>(), sl<GetBannersUseCase>()),
+          child: const ViewAllBanner(),
         ),
         settings: settings,
       ),

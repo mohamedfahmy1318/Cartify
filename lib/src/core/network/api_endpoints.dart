@@ -10,4 +10,6 @@ class ApiConstants {
   static const String getAllUsers = 'users';
   //Categories
   static const String getAllCategories = 'categories';
+  //Brands/Banners
+  static const String getAllBrands = 'brands';
 }

@@ -3,7 +3,8 @@ enum NamedRoutes {
   appHome('/app-home'),
   register('/register'),
   pinCode('/pin-code'),
-  viewAllCategory('/view-all-categories');
+  viewAllCategory('/view-all-categories'),
+  viewAllBanners('/view-all-banners');
 
   final String routeName;
 

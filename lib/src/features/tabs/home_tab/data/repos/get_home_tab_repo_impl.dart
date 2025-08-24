@@ -2,18 +2,30 @@ import 'package:full_ecommerce_app/src/core/error/failure.dart';
 import 'package:full_ecommerce_app/src/core/extensions/error_handler_extension.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/data/data_sources/home_tab_remote_ds.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/category_entity.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/repos/get_category_repo.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/banner_response_entity.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/repos/get_home_tab_repo.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-class GetCategoryRepositoryImpl implements GetCategoryRepository {
+class GetHomeTabRepositoryImpl implements GetHomeTabRepository {
   final HomeTabRemoteDataSource remoteDataSource;
 
-  GetCategoryRepositoryImpl(this.remoteDataSource);
+  GetHomeTabRepositoryImpl(this.remoteDataSource);
 
   @override
   Future<Result<List<CategoryEntity>, Failure>> getCategories({int? limit}) {
     return remoteDataSource
         .getCategories(limit: limit)
+        .handleCallbackWithFailure();
+  }
+
+  @override
+  Future<Result<BannerResponseEntity, Failure>> getBanners({
+    int? limit,
+    int? page,
+  }) {
+    return remoteDataSource
+        .getBanners(limit: limit, page: page)
+        .then((response) => response.toEntity())
         .handleCallbackWithFailure();
   }
 }
