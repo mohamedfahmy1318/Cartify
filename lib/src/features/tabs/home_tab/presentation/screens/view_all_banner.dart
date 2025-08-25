@@ -9,6 +9,7 @@ import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/image_widgets/cached_image.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/banner_entity.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_state.dart';
 
@@ -144,8 +145,7 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
     );
   }
 
-  // عنصر الـ Banner
-  Widget _buildBannerItem(banner) {
+  Widget _buildBannerItem(BannerEntity banner) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -160,11 +160,10 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
       ),
       child: Row(
         children: [
-          // صورة الـ Brand
           GestureDetector(
             onTap: () {
               // Handle banner tap if needed
-              Go.toNamed(NamedRoutes.bannerProducts);
+              Go.toNamed(NamedRoutes.bannerProducts, arguments: banner.id);
             },
             child: Container(
               width: 90.w,

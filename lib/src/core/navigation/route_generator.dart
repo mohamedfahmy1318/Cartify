@@ -5,6 +5,8 @@ import 'package:full_ecommerce_app/src/features/app_home/presentation/screens/ap
 import 'package:full_ecommerce_app/src/features/auth/forgot_password/presentation/screens/pin_code_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/presentation/screens/register_screen.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/use_cases/get_brand_products_use_case.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/brand_product_cubit.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/screens/banners_products_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
@@ -57,7 +59,10 @@ class RouterGenerator {
         settings: settings,
       ),
       NamedRoutes.bannerProducts => _pageRouter.build(
-        const BannerProductsScreen(bannerId: 1, bannerName: ''),
+        BlocProvider(
+          create: (context) => BrandProductCubit(sl<GetBrandProductsUseCase>()),
+          child: BannerProductsScreen(brandId: settings.arguments as String),
+        ),
         settings: settings,
       ),
     };

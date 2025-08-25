@@ -47,7 +47,7 @@ class _ViewAllCategoryState extends State<ViewAllCategory> {
           ),
         ),
       ),
-      body: CategoryGridView(),
+      body: const CategoryGridView(),
     );
   }
 }

@@ -30,7 +30,7 @@ class _CategoryGridViewState extends State<CategoryGridView> {
           case BaseStatus.error:
             return const NotContainData();
           case BaseStatus.initial:
-            return _buildInitialWidget();
+            return buildInitialWidget();
         }
       },
     );
@@ -57,15 +57,15 @@ class _CategoryGridViewState extends State<CategoryGridView> {
       ),
     );
   }
+}
 
-  Widget _buildInitialWidget() {
-    return const Expanded(
-      child: Center(
-        child: Text(
-          'Tap to load categories',
-          style: TextStyle(fontSize: 16, color: AppColors.grey),
-        ),
+Widget buildInitialWidget() {
+  return const Expanded(
+    child: Center(
+      child: Text(
+        'Tap to load categories',
+        style: TextStyle(fontSize: 16, color: AppColors.grey),
       ),
-    );
-  }
+    ),
+  );
 }

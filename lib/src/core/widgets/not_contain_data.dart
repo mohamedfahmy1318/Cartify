@@ -9,19 +9,20 @@ class NotContainData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        AppAssets.lottie.noData.lottie(
-          width: MediaQuery.of(context).size.width * .7,
-          height: MediaQuery.of(context).size.height * .3,
-        ),
-        SizedBox(height: AppSize.sH10),
-        Text(LocaleKeys.errorExeptionNoconnection),
-        SizedBox(height: AppSize.sH10),
-        Text(LocaleKeys.errorexceptionNotcontaindesc),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          AppAssets.lottie.noData.lottie(
+            width: MediaQuery.of(context).size.width * .7,
+            height: MediaQuery.of(context).size.height * .3,
+          ),
+          SizedBox(height: AppSize.sH10),
+          SizedBox(height: AppSize.sH10),
+          Text(LocaleKeys.errorexceptionNotcontaindesc),
+        ],
+      ),
     );
   }
 }
