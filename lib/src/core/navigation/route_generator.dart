@@ -5,6 +5,7 @@ import 'package:full_ecommerce_app/src/features/app_home/presentation/screens/ap
 import 'package:full_ecommerce_app/src/features/auth/forgot_password/presentation/screens/pin_code_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/presentation/screens/register_screen.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/screens/banners_products_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
@@ -53,6 +54,10 @@ class RouterGenerator {
               HomeTabCubit(sl<GetCategoryUseCase>(), sl<GetBannersUseCase>()),
           child: const ViewAllBanner(),
         ),
+        settings: settings,
+      ),
+      NamedRoutes.bannerProducts => _pageRouter.build(
+        const BannerProductsScreen(bannerId: 1, bannerName: ''),
         settings: settings,
       ),
     };

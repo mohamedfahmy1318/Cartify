@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
+import 'package:full_ecommerce_app/src/core/navigation/named_routes.dart';
 import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
@@ -29,7 +30,7 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
     _cubit = context.read<HomeTabCubit>();
 
     // جلب الـ Banners عند فتح الصفحة
-    _cubit.fetchBanners(limit: 7);
+    _cubit.fetchBanners(limit: 12);
     // إضافة listener للـ Scroll للـ Pagination
     _scrollController.addListener(_onScroll);
   }
@@ -55,11 +56,10 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
       backgroundColor: AppColors.scaffoldBackground,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: AppColors.scaffoldBackground,
+        backgroundColor: AppColors.primary,
         title: Text(
           'All Brands',
           style: TextStyle(
-            color: AppColors.primary,
             fontWeight: FontWeightManager.bold,
             fontSize: AppSize.sH16,
           ),
@@ -67,11 +67,7 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Go.back(),
-          icon: Icon(
-            Icons.arrow_back_ios_new_outlined,
-            color: AppColors.primary,
-            size: 25.w,
-          ),
+          icon: Icon(Icons.arrow_back_ios_new_outlined, size: 25.w),
         ),
       ),
       body: BlocBuilder<HomeTabCubit, HomeTabState>(
@@ -102,9 +98,15 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
     return Column(
       children: [
         Expanded(
-          child: ListView.builder(
+          child: GridView.builder(
             controller: _scrollController,
-            padding: EdgeInsets.all(16.w),
+            padding: EdgeInsets.all(10.w),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              childAspectRatio: 0.7,
+              crossAxisSpacing: 17.w,
+              mainAxisSpacing: 17.h,
+            ),
             itemCount: state.banners.length + (state.hasNextPage ? 1 : 0),
             itemBuilder: (context, index) {
               // لو وصلنا لآخر عنصر (Load More)
@@ -123,7 +125,8 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
   // Load More Indicator
   Widget _buildLoadMoreIndicator(bool isLoading) {
     return Container(
-      padding: EdgeInsets.all(20.w),
+      padding: EdgeInsets.all(10.w),
+      margin: EdgeInsets.only(right: 10.h, bottom: 10.h),
       child: Column(
         children: [
           if (isLoading) ...[
@@ -144,15 +147,13 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
   // عنصر الـ Banner
   Widget _buildBannerItem(banner) {
     return Container(
-      margin: EdgeInsets.only(bottom: 10.h),
-      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
+            blurRadius: 5,
             offset: const Offset(0, 2),
           ),
         ],
@@ -160,41 +161,29 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
       child: Row(
         children: [
           // صورة الـ Brand
-          Container(
-            width: 100.w,
-            height: 60.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
-              border: Border.all(color: AppColors.grey.withOpacity(0.2)),
-            ),
-            child: CachedImage(
-              fit: BoxFit.contain,
-              url: banner.image,
-              borderColor: AppColors.primary,
-              borderWidth: .32,
-              haveRadius: true,
-            ),
-          ),
-          SizedBox(width: 25.w),
-          // معلومات الـ Brand
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  banner.name,
-                  style: TextStyle(
-                    fontSize: AppSize.sH18,
-                    fontWeight: FontWeightManager.bold,
-                    color: AppColors.primary,
-                  ),
-                ),
-                SizedBox(height: 4.h),
-              ],
+          GestureDetector(
+            onTap: () {
+              // Handle banner tap if needed
+              Go.toNamed(NamedRoutes.bannerProducts);
+            },
+            child: Container(
+              width: 90.w,
+              height: 60.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(color: AppColors.grey.withOpacity(0.2)),
+              ),
+              child: CachedImage(
+                fit: BoxFit.contain,
+                url: banner.image,
+                borderColor: AppColors.primary,
+                borderWidth: .32,
+                haveRadius: true,
+              ),
             ),
           ),
+
           // سهم
-          Icon(Icons.arrow_forward_ios, color: AppColors.primary, size: 16.w),
         ],
       ),
     );

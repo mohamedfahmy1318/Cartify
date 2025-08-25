@@ -7,7 +7,7 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widge
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category_grid_view.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category&banner_header.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_banner_slider.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_header_app.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/tab_hom__header_app.dart';
 
 class HomeTabViewBody extends StatelessWidget {
   const HomeTabViewBody({super.key});
@@ -21,7 +21,7 @@ class HomeTabViewBody extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const CustomHeaderApp(),
+          const TabHomHeader(),
           10.szH,
           CustomBannerSlider(),
           10.szH,

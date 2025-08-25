@@ -95,7 +95,7 @@ class _CategoryItemState extends State<CategoryItem>
                     child: Text(
                       widget.category.name,
                       textAlign: TextAlign.center,
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

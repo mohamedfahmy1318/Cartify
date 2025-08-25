@@ -15,7 +15,7 @@ class HomeTabScreen extends StatelessWidget {
       create: (context) =>
           HomeTabCubit(sl<GetCategoryUseCase>(), sl<GetBannersUseCase>())
             ..fetchCategories(limit: 6)
-            ..fetchBanners(limit: 7),
+            ..fetchBanners(limit: 8),
       child: const _HomeTabView(),
     );
   }
