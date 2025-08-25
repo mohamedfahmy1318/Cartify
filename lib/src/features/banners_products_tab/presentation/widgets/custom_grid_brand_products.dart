@@ -12,7 +12,6 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widge
 
 class CustomGridBrandProduct extends StatelessWidget {
   const CustomGridBrandProduct({super.key});
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BrandProductCubit, BrandProductState>(
@@ -46,7 +45,6 @@ class CustomGridBrandProduct extends StatelessWidget {
       itemCount: state.productsBannerEntity.length,
       itemBuilder: (context, index) {
         final productbrand = state.productsBannerEntity[index];
-
         return ProductCard(
           banner: productbrand,
           onFavoriteToggle: () {

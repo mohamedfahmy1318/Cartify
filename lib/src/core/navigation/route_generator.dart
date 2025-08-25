@@ -61,7 +61,10 @@ class RouterGenerator {
       NamedRoutes.bannerProducts => _pageRouter.build(
         BlocProvider(
           create: (context) => BrandProductCubit(sl<GetBrandProductsUseCase>()),
-          child: BannerProductsScreen(brandId: settings.arguments as String),
+          child: BannerProductsScreen(
+            brandId: (settings.arguments as Map<String, dynamic>?)?['id'] as String? ?? '',
+            brandName: (settings.arguments as Map<String, dynamic>?)?['name'] as String? ?? '',
+          ),
         ),
         settings: settings,
       ),

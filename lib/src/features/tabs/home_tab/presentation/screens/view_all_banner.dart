@@ -163,7 +163,10 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
           GestureDetector(
             onTap: () {
               // Handle banner tap if needed
-              Go.toNamed(NamedRoutes.bannerProducts, arguments: banner.id);
+              Go.toNamed(
+                NamedRoutes.bannerProducts,
+                arguments: {"id": banner.id, "name": banner.name},
+              );
             },
             child: Container(
               width: 90.w,

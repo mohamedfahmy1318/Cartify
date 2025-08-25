@@ -12,9 +12,14 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/presentatio
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/widgets/custom_grid_brand_products.dart';
 
 class BannerProductsScreen extends StatefulWidget {
-  const BannerProductsScreen({super.key, required this.brandId});
+  const BannerProductsScreen({
+    super.key,
+    required this.brandId,
+    required this.brandName,
+  });
 
   final String brandId;
+  final String brandName;
 
   @override
   State<BannerProductsScreen> createState() => _BannerProductsScreenState();
@@ -58,10 +63,10 @@ class _BannerProductsScreenState extends State<BannerProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.scaffoldBackground,
       appBar: AppBar(
         title: AppText(
-          widget.brandId,
+          '${widget.brandName} Products',
           fontSize: FontSize.s18,
           fontWeight: FontWeightManager.medium,
           color: AppColors.white,
@@ -75,14 +80,6 @@ class _BannerProductsScreenState extends State<BannerProductsScreen> {
             Go.back();
           },
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, color: AppColors.white),
-            onPressed: () {
-              // Handle search
-            },
-          ),
-        ],
       ),
       body: BlocBuilder<BrandProductCubit, BrandProductState>(
         builder: (context, state) {
