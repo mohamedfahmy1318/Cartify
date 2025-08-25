@@ -51,6 +51,7 @@ dependencies:
   fluttertoast: ^8.2.12
   geolocator: ^14.0.2
   geocoding: ^4.0.0
+  readmore: ^3.0.0
 
 
 dev_dependencies:

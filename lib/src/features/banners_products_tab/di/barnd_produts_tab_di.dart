@@ -3,10 +3,14 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/data/data_s
 import 'package:full_ecommerce_app/src/features/banners_products_tab/data/repos/get_brand_products_repo_impl.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/repos/get_brand_products_repo.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/use_cases/get_brand_products_use_case.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/use_cases/get_product_details_use_case.dart';
 
 void brandProductsDI() {
   sl.registerLazySingleton<GetBrandProductsUseCase>(
     () => GetBrandProductsUseCase(sl<GetBrandProductsRepo>()),
+  );
+  sl.registerLazySingleton<GetProductDetailsUseCase>(
+    () => GetProductDetailsUseCase(sl<GetBrandProductsRepo>()),
   );
   sl.registerLazySingleton<GetBrandProductsRepo>(
     () => GetBrandProductsRepoImpl(sl<GetProductsBannersDataSource>()),

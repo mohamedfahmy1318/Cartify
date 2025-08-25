@@ -2,7 +2,6 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/enti
 import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/subcategory_model.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/brand_model.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/data/models/category_response.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/json_helper.dart';
 
 class ProductsBannerModel extends ProductsBannerEntity {
   const ProductsBannerModel({

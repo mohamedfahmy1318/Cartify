@@ -147,13 +147,13 @@ class ProductCard extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             AppText(
-                              'EGP ${banner.price}',
+                              'EGP ${banner.price - 380}',
                               fontSize: FontSize.s14,
                               color: AppColors.primary,
                               fontWeight: FontWeightManager.bold,
                             ),
                             Text(
-                              'EGP ${banner.price - 350}',
+                              'EGP ${banner.price}',
                               style: TextStyle(
                                 fontSize: FontSize.s10,
                                 color: AppColors.grey,

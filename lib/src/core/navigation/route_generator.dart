@@ -6,8 +6,11 @@ import 'package:full_ecommerce_app/src/features/auth/forgot_password/presentatio
 import 'package:full_ecommerce_app/src/features/auth/login/presentation/screens/login_screen.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/presentation/screens/register_screen.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/use_cases/get_brand_products_use_case.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/use_cases/get_product_details_use_case.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/brand_product_cubit.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/product_details/product_details_cubit.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/screens/banners_products_screen.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/screens/product_details_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
@@ -62,9 +65,23 @@ class RouterGenerator {
         BlocProvider(
           create: (context) => BrandProductCubit(sl<GetBrandProductsUseCase>()),
           child: BannerProductsScreen(
-            brandId: (settings.arguments as Map<String, dynamic>?)?['id'] as String? ?? '',
-            brandName: (settings.arguments as Map<String, dynamic>?)?['name'] as String? ?? '',
+            brandId:
+                (settings.arguments as Map<String, dynamic>?)?['id']
+                    as String? ??
+                '',
+            brandName:
+                (settings.arguments as Map<String, dynamic>?)?['name']
+                    as String? ??
+                '',
           ),
+        ),
+        settings: settings,
+      ),
+      NamedRoutes.productDetail => _pageRouter.build(
+        BlocProvider(
+          create: (context) =>
+              ProductDetailsCubit(sl<GetProductDetailsUseCase>()),
+          child: ProductDetailsScreen(productId: settings.arguments as String),
         ),
         settings: settings,
       ),

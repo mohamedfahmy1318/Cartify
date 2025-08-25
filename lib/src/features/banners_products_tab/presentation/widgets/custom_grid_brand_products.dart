@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
+import 'package:full_ecommerce_app/src/core/navigation/named_routes.dart';
+import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
@@ -45,13 +47,20 @@ class CustomGridBrandProduct extends StatelessWidget {
       itemCount: state.productsBannerEntity.length,
       itemBuilder: (context, index) {
         final productbrand = state.productsBannerEntity[index];
-        return ProductCard(
-          banner: productbrand,
-          onFavoriteToggle: () {
-            // Toggle favorite state
+        return GestureDetector(
+          onTap: () {
+            // Handle product tap
+            Go.toNamed(NamedRoutes.productDetail, arguments: productbrand.id);
+            print(productbrand.id);
           },
-          onAddToCart: () {},
-          isFavorite: false,
+          child: ProductCard(
+            banner: productbrand,
+            onFavoriteToggle: () {
+              // Toggle favorite state
+            },
+            onAddToCart: () {},
+            isFavorite: false,
+          ),
         );
       },
     );
