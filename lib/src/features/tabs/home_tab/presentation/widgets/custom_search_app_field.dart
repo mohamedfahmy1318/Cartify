@@ -4,13 +4,13 @@ import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/widgets/text_fields/default_text_field.dart';
 
 class CustomSearchAppField extends StatelessWidget {
-  const CustomSearchAppField({super.key});
-
+  const CustomSearchAppField({super.key, required this.titleSearch});
+  final String titleSearch;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: DefaultTextField(
-        title: 'Search products...',
+        title: titleSearch,
         prefixIcon: Icon(
           Icons.search,
           color: AppColors.primary,

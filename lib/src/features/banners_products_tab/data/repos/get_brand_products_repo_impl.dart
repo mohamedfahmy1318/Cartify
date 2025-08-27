@@ -22,9 +22,7 @@ class GetBrandProductsRepoImpl implements GetBrandProductsRepo {
   }
 
   @override
-  Future<Result<ProductsBannerEntity, Failure>> getProductDetail(
-    String productId,
-  ) {
+  Future<Result<ProductEntity, Failure>> getProductDetail(String productId) {
     return _remoteDataSource
         .getProductDetail(productId)
         .handleCallbackWithFailure();

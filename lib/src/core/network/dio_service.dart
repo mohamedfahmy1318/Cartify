@@ -38,16 +38,21 @@ class DioService implements NetworkService {
     if (kDebugMode) {
       _dio.interceptors.add(LoggerInterceptor());
     }
+    _dio.options.headers[HttpHeaders.contentTypeHeader] = 'application/json';
   }
 
   @override
   void setToken(String token) {
+    // Many APIs expect Authorization: Bearer <token>,
+    // while Routemisr e-commerce API expects a 'token' header without Bearer.
     _dio.options.headers[HttpHeaders.authorizationHeader] = 'Bearer $token';
+    _dio.options.headers['token'] = token;
   }
 
   @override
   void removeToken() {
     _dio.options.headers.remove(HttpHeaders.authorizationHeader);
+    _dio.options.headers.remove('token');
   }
 
   @override

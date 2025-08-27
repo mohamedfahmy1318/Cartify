@@ -11,7 +11,7 @@ abstract class GetProductsBannersDataSource {
     int? page,
     int? limit,
   });
-  Future<ProductsBannerModel> getProductDetail(String productId);
+  Future<ProductModel> getProductDetail(String productId);
 }
 
 class GetProductsBannersDataSourceImpl implements GetProductsBannersDataSource {
@@ -47,7 +47,7 @@ class GetProductsBannersDataSourceImpl implements GetProductsBannersDataSource {
   }
 
   @override
-  Future<ProductsBannerModel> getProductDetail(String productId) async {
+  Future<ProductModel> getProductDetail(String productId) async {
     // Make the API call with the product ID in the path
     final networkRequest = NetworkRequest(
       method: RequestMethod.get,
@@ -57,7 +57,7 @@ class GetProductsBannersDataSourceImpl implements GetProductsBannersDataSource {
     final result = await sl<NetworkService>().callApi(
       networkRequest,
       mapper: (json) =>
-          ProductsBannerModel.fromJson((json as Map<String, dynamic>)['data']),
+          ProductModel.fromJson((json as Map<String, dynamic>)['data']),
     );
     return result.data;
   }

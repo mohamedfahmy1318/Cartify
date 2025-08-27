@@ -8,7 +8,9 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widge
 import 'package:geocoding/geocoding.dart';
 
 class TabHomHeader extends StatefulWidget {
-  const TabHomHeader({super.key});
+  final String titleSearch;
+
+  const TabHomHeader({super.key, required this.titleSearch});
 
   @override
   State<TabHomHeader> createState() => _TabHomHeaderState();
@@ -68,7 +70,7 @@ class _TabHomHeaderState extends State<TabHomHeader> {
         12.szH,
         Row(
           children: [
-            const CustomSearchAppField(),
+            CustomSearchAppField(titleSearch: widget.titleSearch),
             IconButton(
               icon: Icon(
                 Icons.shopping_cart_outlined,

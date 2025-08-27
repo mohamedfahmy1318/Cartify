@@ -16,7 +16,7 @@ class ProductDetailsCubit extends Cubit<ProductDetailsState> {
       (success) => emit(
         state.copyWith(
           productsStatus: BaseStatus.success,
-          productsBannerEntity: success,
+          productEntity: success,
         ),
       ),
       (error) => emit(

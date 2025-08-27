@@ -4,14 +4,13 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/enti
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/repos/get_brand_products_repo.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-class GetProductDetailsUseCase
-    implements UseCase<ProductsBannerEntity, String> {
+class GetProductDetailsUseCase implements UseCase<ProductEntity, String> {
   final GetBrandProductsRepo _repository;
 
   GetProductDetailsUseCase(this._repository);
 
   @override
-  Future<Result<ProductsBannerEntity, Failure>> call(String productId) {
+  Future<Result<ProductEntity, Failure>> call(String productId) {
     return _repository.getProductDetail(productId);
   }
 }

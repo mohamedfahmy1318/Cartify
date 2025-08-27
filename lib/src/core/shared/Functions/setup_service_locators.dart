@@ -7,6 +7,7 @@ import 'package:full_ecommerce_app/src/features/auth/login/di/login_di.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/di/register_di.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/di/barnd_produts_tab_di.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/di/home_tab_di.dart';
+import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/di/fav_di.dart';
 
 import '../../../config/res/constants_manager.dart';
 
@@ -17,12 +18,13 @@ void setUpServiceLocator() {
   setUpForgotPasswordDI();
   homeTabDI();
   brandProductsDI();
+  favoritesProductsDI();
 }
 
 void setUpGeneralDependencies() {
   sl.registerLazySingleton<NetworkService>(() => DioService());
 
-  sl.registerLazySingleton<UserCubit>(() => UserCubit());
+  sl.registerFactory<UserCubit>(() => UserCubit());
 
   sl.registerFactory<NotificationService>(() => NotificationService());
 }

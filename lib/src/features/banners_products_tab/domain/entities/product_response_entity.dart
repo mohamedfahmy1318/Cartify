@@ -21,7 +21,7 @@ class ProductsBannerMetadataEntity extends Equatable {
 class ProductsBannerResponseEntity extends Equatable {
   final int results;
   final ProductsBannerMetadataEntity metadata;
-  final List<ProductsBannerEntity> data;
+  final List<ProductEntity> data;
 
   const ProductsBannerResponseEntity({
     required this.results,

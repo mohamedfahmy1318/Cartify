@@ -3,7 +3,7 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/enti
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/brand_entity.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/category_entity.dart';
 
-class ProductsBannerEntity extends Equatable {
+class ProductEntity extends Equatable {
   final int sold;
   final List<String> images;
   final List<SubcategoryEntity> subcategory;
@@ -22,7 +22,7 @@ class ProductsBannerEntity extends Equatable {
   final String createdAt;
   final String updatedAt;
 
-  const ProductsBannerEntity({
+  const ProductEntity({
     required this.sold,
     required this.images,
     required this.subcategory,

@@ -25,7 +25,7 @@ class _AppHomeView extends StatefulWidget {
 class _AppHomeViewState extends State<_AppHomeView> {
   int selectedIndex = 0;
 
-  final List<Widget> screens = const [
+  final List<Widget> screens = <Widget>[
     HomeTabScreen(),
     CategoriesTabScreen(),
     FavoritesTabScreen(),

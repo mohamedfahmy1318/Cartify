@@ -6,7 +6,7 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/enti
 final class BrandProductState extends Equatable {
   // BrandProductState State
   final BaseStatus productsStatus;
-  final List<ProductsBannerEntity> productsBannerEntity;
+  final List<ProductEntity> productsBannerEntity;
   final String productsErrorMessage;
   // Pagination State للـ Products
   final int currentPage;
@@ -38,7 +38,7 @@ final class BrandProductState extends Equatable {
   BrandProductState copyWith({
     // Products
     BaseStatus? productsStatus,
-    List<ProductsBannerEntity>? productsBannerEntity,
+    List<ProductEntity>? productsBannerEntity,
     String? productsErrorMessage,
 
     // Pagination

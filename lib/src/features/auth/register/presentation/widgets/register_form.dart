@@ -7,6 +7,7 @@ import 'package:full_ecommerce_app/src/core/helpers/validators.dart';
 import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
+import 'package:full_ecommerce_app/src/core/widgets/buttons/default_button.dart';
 import 'package:full_ecommerce_app/src/core/widgets/buttons/loading_button.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_messages.dart';
@@ -236,7 +237,7 @@ class _RegisterFormState extends State<RegisterForm> {
               if (isLoading)
                 Center(child: CustomLoading.showLoadingView())
               else
-                LoadingButton(
+                DefaultButton(
                   onTap: _handleRegister,
                   title: LocaleKeys.register.tr(),
                 ),

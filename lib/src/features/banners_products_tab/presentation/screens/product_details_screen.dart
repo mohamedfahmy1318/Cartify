@@ -52,7 +52,7 @@ class ProductDetailsScreen extends StatelessWidget {
               onLoading: () => CustomLoading.showLoadingView(),
               onError: () => const NotContainData(),
               onSuccess: () =>
-                  _buildProductDetails(context, state.productsBannerEntity),
+                  _buildProductDetails(context, state.productEntity),
               onInitial: () => CustomLoading.showLoadingView(),
             );
           },
@@ -61,10 +61,7 @@ class ProductDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProductDetails(
-    BuildContext context,
-    ProductsBannerEntity product,
-  ) {
+  Widget _buildProductDetails(BuildContext context, ProductEntity product) {
     return SingleChildScrollView(
       padding: EdgeInsets.all(16.w),
       child: Column(
@@ -178,7 +175,7 @@ class ProductDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildProductImage(ProductsBannerEntity product) {
+  Widget _buildProductImage(ProductEntity product) {
     final images = product.images.isNotEmpty
         ? product.images
         : [product.imageCover];

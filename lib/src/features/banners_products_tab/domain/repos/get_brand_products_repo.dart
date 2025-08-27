@@ -9,7 +9,5 @@ abstract class GetBrandProductsRepo {
     int? page,
     int? limit,
   });
-  Future<Result<ProductsBannerEntity, Failure>> getProductDetail(
-    String productId,
-  );
+  Future<Result<ProductEntity, Failure>> getProductDetail(String productId);
 }

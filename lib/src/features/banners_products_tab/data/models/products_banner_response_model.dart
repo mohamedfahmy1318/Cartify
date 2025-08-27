@@ -46,7 +46,7 @@ class ProductsBannerMetadataModel {
 class ProductsBannerResponseModel {
   final int results;
   final ProductsBannerMetadataModel metadata;
-  final List<ProductsBannerModel> data;
+  final List<ProductModel> data;
 
   const ProductsBannerResponseModel({
     required this.results,
@@ -69,12 +69,10 @@ class ProductsBannerResponseModel {
       data: json['data'] != null
           ? (json['data'] as List<dynamic>)
                 .map(
-                  (item) => ProductsBannerModel.fromJson(
-                    item as Map<String, dynamic>,
-                  ),
+                  (item) => ProductModel.fromJson(item as Map<String, dynamic>),
                 )
                 .toList()
-          : <ProductsBannerModel>[],
+          : <ProductModel>[],
     );
   }
 

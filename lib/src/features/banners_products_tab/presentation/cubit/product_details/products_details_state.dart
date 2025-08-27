@@ -8,20 +8,20 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/ca
 final class ProductDetailsState extends Equatable {
   // ProductDetailsState State
   final BaseStatus productsStatus;
-  final ProductsBannerEntity productsBannerEntity;
+  final ProductEntity productEntity;
   final String productsDetailsErrorMessage;
 
   const ProductDetailsState({
     // Products
     required this.productsStatus,
-    required this.productsBannerEntity,
+    required this.productEntity,
     this.productsDetailsErrorMessage = ConstantManager.emptyText,
   });
 
   factory ProductDetailsState.initial() {
     return const ProductDetailsState(
       productsStatus: BaseStatus.initial,
-      productsBannerEntity: ProductsBannerEntity(
+      productEntity: ProductEntity(
         sold: 0,
         images: [],
         subcategory: [],
@@ -53,13 +53,13 @@ final class ProductDetailsState extends Equatable {
   ProductDetailsState copyWith({
     // Products
     BaseStatus? productsStatus,
-    ProductsBannerEntity? productsBannerEntity,
+    ProductEntity? productEntity,
     String? productsDetailsErrorMessage,
   }) {
     return ProductDetailsState(
       // Products
       productsStatus: productsStatus ?? this.productsStatus,
-      productsBannerEntity: productsBannerEntity ?? this.productsBannerEntity,
+      productEntity: productEntity ?? this.productEntity,
       productsDetailsErrorMessage:
           productsDetailsErrorMessage ?? this.productsDetailsErrorMessage,
     );
@@ -69,7 +69,7 @@ final class ProductDetailsState extends Equatable {
   List<Object> get props => [
     // Products
     productsStatus,
-    productsBannerEntity,
+    productEntity,
     productsDetailsErrorMessage,
   ];
 }

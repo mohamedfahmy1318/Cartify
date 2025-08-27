@@ -4,21 +4,21 @@ import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/core/widgets/image_widgets/cached_image.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_banner_entity.dart';
+import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/domain/entities/fav_entity.dart';
 
-class ProductCard extends StatelessWidget {
-  final ProductEntity banner;
-  const ProductCard({
-    super.key,
-    required this.onFavoriteToggle,
-    required this.onAddToCart,
-    required this.isFavorite,
-    required this.banner,
-  });
-
+class ProductFavCard extends StatelessWidget {
+  final FavEntity favEntity;
   final VoidCallback onFavoriteToggle;
   final VoidCallback onAddToCart;
   final bool isFavorite;
+
+  const ProductFavCard({
+    super.key,
+    required this.favEntity,
+    required this.onFavoriteToggle,
+    required this.onAddToCart,
+    required this.isFavorite,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class ProductCard extends StatelessWidget {
                       top: Radius.circular(16.r),
                     ),
                     child: CachedImage(
-                      url: banner.imageCover,
+                      url: favEntity.imageCover ?? '',
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -102,7 +102,7 @@ class ProductCard extends StatelessWidget {
                 children: [
                   // Product Name
                   AppText(
-                    banner.title,
+                    favEntity.title ?? 'Unknown Product',
                     fontSize: FontSize.s12,
                     fontWeight: FontWeightManager.medium,
                     color: AppColors.black,
@@ -119,14 +119,14 @@ class ProductCard extends StatelessWidget {
                       Icon(Icons.star, color: Colors.amber, size: 12.r),
                       SizedBox(width: 2.w),
                       AppText(
-                        banner.ratingsAverage.toString(),
+                        (favEntity.ratingsAverage ?? 0.0).toString(),
                         fontSize: FontSize.s10,
                         fontWeight: FontWeightManager.medium,
                         color: AppColors.grey,
                       ),
                       SizedBox(width: 2.w),
                       AppText(
-                        banner.ratingsQuantity.toString(),
+                        '(${favEntity.ratingsQuantity ?? 0})',
                         fontSize: FontSize.s10,
                         color: AppColors.grey,
                       ),
@@ -147,19 +147,20 @@ class ProductCard extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             AppText(
-                              'EGP ${banner.price - 380}',
+                              'EGP ${_getDiscountPrice(favEntity.price ?? 0)}',
                               fontSize: FontSize.s14,
                               color: AppColors.primary,
                               fontWeight: FontWeightManager.bold,
                             ),
-                            Text(
-                              'EGP ${banner.price}',
-                              style: TextStyle(
-                                fontSize: FontSize.s10,
-                                color: AppColors.grey,
-                                decoration: TextDecoration.lineThrough,
+                            if ((favEntity.price ?? 0) > 0)
+                              Text(
+                                'EGP ${favEntity.price}',
+                                style: TextStyle(
+                                  fontSize: FontSize.s10,
+                                  color: AppColors.grey,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
                               ),
-                            ),
                           ],
                         ),
                       ),
@@ -196,5 +197,11 @@ class ProductCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  int _getDiscountPrice(int originalPrice) {
+    // Apply a fixed discount of 380 EGP or 20% discount, whichever is less
+    int discount = originalPrice > 380 ? 380 : (originalPrice * 0.2).round();
+    return originalPrice - discount;
   }
 }

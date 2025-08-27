@@ -21,7 +21,7 @@ class HomeTabViewBody extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const TabHomHeader(),
+          const TabHomHeader(titleSearch: 'Search products...'),
           10.szH,
           CustomBannerSlider(),
           10.szH,
