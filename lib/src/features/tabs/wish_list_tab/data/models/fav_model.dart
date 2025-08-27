@@ -44,7 +44,9 @@ class FavModel extends FavEntity {
       description: json['description'] as String? ?? '',
       quantity: json['quantity'] as int? ?? 0,
       price: json['price'] as int? ?? 0,
-      imageCover: json['imageCover'] as String? ?? '',
+      imageCover: (json['imageCover'] as String?)?.isNotEmpty == true
+          ? json['imageCover'] as String
+          : 'https://via.placeholder.com/300x300.png?text=No+Image',
       category: json['category'] != null
           ? CategoryModel.fromJson(json['category'] as Map<String, dynamic>)
           : const CategoryModel(

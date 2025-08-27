@@ -16,6 +16,10 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/g
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_banner.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_category.dart';
+import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/domain/use_cases/add_product_to_favorites_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/domain/use_cases/get_fav_products_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/domain/use_cases/remove_product_from_favorites_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_cubit.dart';
 import 'named_routes.dart';
 import 'page_router/imports_page_router_builder.dart';
 
@@ -62,8 +66,13 @@ class RouterGenerator {
         settings: settings,
       ),
       NamedRoutes.bannerProducts => _pageRouter.build(
-        BlocProvider(
-          create: (context) => BrandProductCubit(sl<GetBrandProductsUseCase>()),
+        MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  BrandProductCubit(sl<GetBrandProductsUseCase>()),
+            ),
+          ],
           child: BannerProductsScreen(
             brandId:
                 (settings.arguments as Map<String, dynamic>?)?['id']

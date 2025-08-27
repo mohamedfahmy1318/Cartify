@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_sliver_header_delegat.dart';
@@ -22,9 +23,7 @@ class _FavoritesTabViewBodyState extends State<FavoritesTabViewBody> {
   void initState() {
     super.initState();
     // Delay the call to ensure UserCubit has finished initialization
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<FavoritesCubit>().getFavProducts();
-    });
+    context.read<FavoritesCubit>().getFavProducts();
   }
 
   @override

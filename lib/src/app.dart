@@ -5,6 +5,7 @@ import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
 import 'package:full_ecommerce_app/src/features/splash/splash_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_cubit.dart';
 import 'config/themes/app_theme.dart';
 import 'core/navigation/navigator.dart';
 import 'core/navigation/route_generator.dart';
@@ -21,8 +22,11 @@ class App extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (ctx, child) {
-        return BlocProvider(
-          create: (context) => sl<UserCubit>()..init(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (context) => sl<UserCubit>()..init()),
+            BlocProvider(create: (context) => sl<FavoritesCubit>()),
+          ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
             title: ConstantManager.projectName,
