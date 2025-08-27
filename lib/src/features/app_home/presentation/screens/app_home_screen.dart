@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/features/app_home/presentation/widgets/app_bottom_bar.dart';
 import 'package:full_ecommerce_app/src/features/tabs/categories_tab/presentation/screens/categories_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/home_tab_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/profile_tab/presentation/screens/profile_Screen.dart';
-import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/screens/fav_screen.dart';
 
 class AppHomeScreen extends StatelessWidget {
@@ -28,10 +26,10 @@ class _AppHomeViewState extends State<_AppHomeView> {
   int selectedIndex = 0;
 
   final List<Widget> screens = <Widget>[
-    HomeTabScreen(),
-    CategoriesTabScreen(),
-    FavoritesTabScreen(),
-    ProfileTabScreen(),
+    const HomeTabScreen(),
+    const CategoriesTabScreen(),
+    const FavoritesTabScreen(),
+    const ProfileTabScreen(),
   ];
 
   void _onItemTapped(int index) {

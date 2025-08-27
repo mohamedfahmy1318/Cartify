@@ -10,6 +10,8 @@ class CustomBannerSlider extends StatelessWidget {
     AppAssets.png.baner3.path,
   ];
 
+  CustomBannerSlider({super.key});
+
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(

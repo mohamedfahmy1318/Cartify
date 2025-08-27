@@ -4,10 +4,7 @@ mixin UserUtils {
   Future<void> _saveUser(UserModel user) async {
     logDebug('user saved: ${user.toJson()}');
 
-    await CacheStorage.write(
-      _userKey,
-      jsonEncode(user.toJson()),
-    );
+    await CacheStorage.write(_userKey, jsonEncode(user.toJson()));
   }
 
   Future<void> _saveToken(String token) async {

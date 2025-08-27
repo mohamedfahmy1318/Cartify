@@ -70,6 +70,7 @@ extension TextStyleEx on TextStyle {
   //   return copyWith(fontSize: context.responsive(mobile: mobile, tablet: tablet, desktop: desktop));
   // }
 }
+
 /*
 Text(
   "Hello World",

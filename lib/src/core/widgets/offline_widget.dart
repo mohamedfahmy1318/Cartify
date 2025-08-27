@@ -17,20 +17,14 @@ class _OfflineWidgetState extends State<OfflineWidget> {
   @override
   Widget build(BuildContext context) {
     return OfflineBuilder(
-      connectivityBuilder: (
-        BuildContext context,
-        ConnectivityResult connectivity,
-        Widget item,
-      ) {
-        final bool connected = connectivity != ConnectivityResult.none;
-        return Stack(
-          fit: StackFit.expand,
-          children: [
-            item,
-            if (!connected) const InternetExpetion(),
-          ],
-        );
-      },
+      connectivityBuilder:
+          (BuildContext context, ConnectivityResult connectivity, Widget item) {
+            final bool connected = connectivity != ConnectivityResult.none;
+            return Stack(
+              fit: StackFit.expand,
+              children: [item, if (!connected) const InternetExpetion()],
+            );
+          },
       builder: (BuildContext context) {
         return widget.child;
       },

@@ -67,6 +67,7 @@ class _CustomListFavoritesProductsState
     );
   }
 }
+
 /*
 ProductCard(
             onAddToCart: () {

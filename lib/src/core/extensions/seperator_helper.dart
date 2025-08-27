@@ -7,6 +7,7 @@ extension SeparatorExtension on List<Widget> {
     return expand((element) => [element, separator]).toList()..removeLast();
   }
 }
+
 //الكود ده بيعمل Extension على List<Widget> علشان يضيف بينهم separator (فاصل) بشكل سهل بدل ما تكتب SizedBox أو Divider كل مرة يدوي.
 /*import 'package:flutter/material.dart';
 

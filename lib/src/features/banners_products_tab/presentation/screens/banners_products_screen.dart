@@ -89,7 +89,8 @@ class _BannerProductsScreenState extends State<BannerProductsScreen> {
     );
   }
 }
- /*
+
+/*
   void _showAddToCartSnackBar(String productName) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

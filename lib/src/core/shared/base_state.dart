@@ -1,12 +1,4 @@
-enum BaseStatus {
-  initial,
-
-  loading,
-
-  success,
-
-  error,
-}
+enum BaseStatus { initial, loading, success, error }
 
 extension BasseStatusExt on BaseStatus {
   bool get isInitial => this == BaseStatus.initial;

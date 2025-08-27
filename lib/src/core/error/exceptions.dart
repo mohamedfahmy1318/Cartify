@@ -55,6 +55,7 @@ class ForbiddenException extends ServerException {
 class BlockedException extends ServerException {
   const BlockedException(super.message);
 }
+
 /*
 400 → BadRequestException
 

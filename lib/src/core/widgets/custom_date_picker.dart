@@ -5,8 +5,10 @@ import '../../config/language/languages.dart';
 import '../../config/res/color_manager.dart';
 import '../navigation/navigator.dart';
 
-Future<DateTime?> showCustomDatePicker(
-    {required TextEditingController controller, String? dateFormat}) async {
+Future<DateTime?> showCustomDatePicker({
+  required TextEditingController controller,
+  String? dateFormat,
+}) async {
   DateTime? pickedDate = await showDatePicker(
     locale: Languages.currentLanguage.locale,
     context: Go.context,
@@ -34,9 +36,10 @@ Future<DateTime?> showCustomDatePicker(
     },
   );
   if (pickedDate != null) {
-    String formattedDate = DateFormat(dateFormat ?? 'EEE, M/d/y',
-            Languages.currentLanguage.locale.languageCode)
-        .format(pickedDate); // use your desired date format
+    String formattedDate = DateFormat(
+      dateFormat ?? 'EEE, M/d/y',
+      Languages.currentLanguage.locale.languageCode,
+    ).format(pickedDate); // use your desired date format
     controller.text = formattedDate;
   }
   return pickedDate;

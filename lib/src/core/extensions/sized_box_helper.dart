@@ -6,5 +6,6 @@ extension SizedBoxHelper on num {
 
   SizedBox get szW => SizedBox(width: toDouble().w);
 }
+
 //     20.szH,
 //     20.szW, دول تكتبهم مكان الSizedBox
