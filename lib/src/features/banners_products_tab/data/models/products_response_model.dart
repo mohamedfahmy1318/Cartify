@@ -1,21 +1,21 @@
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/product_response_entity.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/products_banner_model.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/products_model.dart';
 
-class ProductsBannerMetadataModel {
+class ProductsMetadataModel {
   final int currentPage;
   final int numberOfPages;
   final int limit;
   final int? nextPage;
 
-  const ProductsBannerMetadataModel({
+  const ProductsMetadataModel({
     required this.currentPage,
     required this.numberOfPages,
     required this.limit,
     this.nextPage,
   });
 
-  factory ProductsBannerMetadataModel.fromJson(Map<String, dynamic> json) {
-    return ProductsBannerMetadataModel(
+  factory ProductsMetadataModel.fromJson(Map<String, dynamic> json) {
+    return ProductsMetadataModel(
       currentPage: json['currentPage'] as int? ?? 1,
       numberOfPages: json['numberOfPages'] as int? ?? 1,
       limit: json['limit'] as int? ?? 20,
@@ -33,8 +33,8 @@ class ProductsBannerMetadataModel {
   }
 
   // Convert to Entity
-  ProductsBannerMetadataEntity toEntity() {
-    return ProductsBannerMetadataEntity(
+  ProductsMetadataEntity toEntity() {
+    return ProductsMetadataEntity(
       currentPage: currentPage,
       numberOfPages: numberOfPages,
       limit: limit,
@@ -43,25 +43,25 @@ class ProductsBannerMetadataModel {
   }
 }
 
-class ProductsBannerResponseModel {
+class ProductsResponseModel {
   final int results;
-  final ProductsBannerMetadataModel metadata;
+  final ProductsMetadataModel metadata;
   final List<ProductModel> data;
 
-  const ProductsBannerResponseModel({
+  const ProductsResponseModel({
     required this.results,
     required this.metadata,
     required this.data,
   });
 
-  factory ProductsBannerResponseModel.fromJson(Map<String, dynamic> json) {
-    return ProductsBannerResponseModel(
+  factory ProductsResponseModel.fromJson(Map<String, dynamic> json) {
+    return ProductsResponseModel(
       results: json['results'] as int? ?? 0,
       metadata: json['metadata'] != null
-          ? ProductsBannerMetadataModel.fromJson(
+          ? ProductsMetadataModel.fromJson(
               json['metadata'] as Map<String, dynamic>,
             )
-          : const ProductsBannerMetadataModel(
+          : const ProductsMetadataModel(
               currentPage: 1,
               numberOfPages: 1,
               limit: 20,
@@ -85,8 +85,8 @@ class ProductsBannerResponseModel {
   }
 
   // Convert to Entity
-  ProductsBannerResponseEntity toEntity() {
-    return ProductsBannerResponseEntity(
+  ProductsResponseEntity toEntity() {
+    return ProductsResponseEntity(
       results: results,
       metadata: metadata.toEntity(),
       data: data

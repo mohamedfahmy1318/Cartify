@@ -4,7 +4,7 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/enti
 import 'package:multiple_result/multiple_result.dart';
 
 abstract class GetBrandProductsRepo {
-  Future<Result<ProductsBannerResponseEntity, Failure>> getBanners(
+  Future<Result<ProductsResponseEntity, Failure>> getBanners(
     String brand, {
     int? page,
     int? limit,

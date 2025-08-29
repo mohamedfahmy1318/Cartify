@@ -2,11 +2,11 @@ import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
 import 'package:full_ecommerce_app/src/core/network/api_endpoints.dart';
 import 'package:full_ecommerce_app/src/core/network/network_request.dart';
 import 'package:full_ecommerce_app/src/core/network/network_service.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/products_banner_model.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/products_banner_response_model.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/products_model.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/products_response_model.dart';
 
 abstract class GetProductsBannersDataSource {
-  Future<ProductsBannerResponseModel> getProductsBanners(
+  Future<ProductsResponseModel> getProductsBanners(
     String brand, {
     int? page,
     int? limit,
@@ -16,7 +16,7 @@ abstract class GetProductsBannersDataSource {
 
 class GetProductsBannersDataSourceImpl implements GetProductsBannersDataSource {
   @override
-  Future<ProductsBannerResponseModel> getProductsBanners(
+  Future<ProductsResponseModel> getProductsBanners(
     String brand, {
     int? page,
     int? limit,
@@ -41,7 +41,7 @@ class GetProductsBannersDataSourceImpl implements GetProductsBannersDataSource {
     final result = await sl<NetworkService>().callApi(
       networkRequest,
       mapper: (json) =>
-          ProductsBannerResponseModel.fromJson(json as Map<String, dynamic>),
+          ProductsResponseModel.fromJson(json as Map<String, dynamic>),
     );
     return result.data;
   }

@@ -17,13 +17,13 @@ class GetBannersProductsParams extends Equatable {
 }
 
 class GetBrandProductsUseCase
-    implements UseCase<ProductsBannerResponseEntity, GetBannersProductsParams> {
+    implements UseCase<ProductsResponseEntity, GetBannersProductsParams> {
   final GetBrandProductsRepo _repository;
 
   GetBrandProductsUseCase(this._repository);
 
   @override
-  Future<Result<ProductsBannerResponseEntity, Failure>> call(
+  Future<Result<ProductsResponseEntity, Failure>> call(
     GetBannersProductsParams params,
   ) {
     return _repository.getBanners(

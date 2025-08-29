@@ -24,7 +24,7 @@ class BannerListView extends StatelessWidget {
           case BaseStatus.error:
             return const NotContainData();
           case BaseStatus.initial:
-            return _buildInitialWidget();
+            return const SizedBox();
         }
       },
     );
@@ -44,17 +44,6 @@ class BannerListView extends StatelessWidget {
           final banner = state.banners[index];
           return BannerItem(banner: banner);
         },
-      ),
-    );
-  }
-
-  Widget _buildInitialWidget() {
-    return const Expanded(
-      child: Center(
-        child: Text(
-          'Tap to load Banners',
-          style: TextStyle(fontSize: 16, color: AppColors.grey),
-        ),
       ),
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_products_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/home_tab_view_body.dart';
 
@@ -13,9 +14,14 @@ class HomeTabScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          HomeTabCubit(sl<GetCategoryUseCase>(), sl<GetBannersUseCase>())
+          HomeTabCubit(
+              sl<GetCategoryUseCase>(),
+              sl<GetBannersUseCase>(),
+              sl<GetProductsUseCase>(),
+            )
             ..fetchCategories(limit: 6)
-            ..fetchBanners(limit: 8),
+            ..fetchBanners(limit: 8)
+            ..fetchProducts(limit: 10),
       child: const _HomeTabView(),
     );
   }

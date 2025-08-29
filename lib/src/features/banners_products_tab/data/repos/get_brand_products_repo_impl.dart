@@ -10,7 +10,7 @@ class GetBrandProductsRepoImpl implements GetBrandProductsRepo {
   final GetProductsBannersDataSource _remoteDataSource;
   GetBrandProductsRepoImpl(this._remoteDataSource);
   @override
-  Future<Result<ProductsBannerResponseEntity, Failure>> getBanners(
+  Future<Result<ProductsResponseEntity, Failure>> getBanners(
     String brand, {
     int? page,
     int? limit,

@@ -41,7 +41,7 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
       // حمل المزيد من الـ Banners
-      _cubit.loadMoreBanners(limit: 7); // حمل 7 banners إضافية
+      _cubit.loadMoreProducts(limit: 7); // حمل 7 banners إضافية
     }
   }
 
@@ -75,7 +75,7 @@ class _ViewAllBannerState extends State<ViewAllBanner> {
         builder: (context, state) {
           return RefreshIndicator(
             onRefresh: () async {
-              _cubit.refreshBanners(limit: 10);
+              _cubit.refreshProducts(limit: 10);
             },
             child: _buildBody(state),
           );

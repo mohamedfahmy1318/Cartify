@@ -13,6 +13,7 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/presentatio
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/screens/product_details_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_products_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_banner.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_category.dart';
@@ -47,16 +48,22 @@ class RouterGenerator {
       ),
       NamedRoutes.viewAllCategory => _pageRouter.build(
         BlocProvider(
-          create: (context) =>
-              HomeTabCubit(sl<GetCategoryUseCase>(), sl<GetBannersUseCase>()),
+          create: (context) => HomeTabCubit(
+            sl<GetCategoryUseCase>(),
+            sl<GetBannersUseCase>(),
+            sl<GetProductsUseCase>(),
+          ),
           child: const ViewAllCategory(),
         ),
         settings: settings,
       ),
       NamedRoutes.viewAllBanners => _pageRouter.build(
         BlocProvider(
-          create: (context) =>
-              HomeTabCubit(sl<GetCategoryUseCase>(), sl<GetBannersUseCase>()),
+          create: (context) => HomeTabCubit(
+            sl<GetCategoryUseCase>(),
+            sl<GetBannersUseCase>(),
+            sl<GetProductsUseCase>(),
+          ),
           child: const ViewAllBanner(),
         ),
         settings: settings,
