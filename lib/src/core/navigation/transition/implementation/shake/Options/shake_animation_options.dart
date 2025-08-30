@@ -1,4 +1,5 @@
-import '../../../../Helper/Interfaces/helper_imports.dart';
+
+import 'package:full_ecommerce_app/src/core/navigation/helper/Interfaces/helper_imports.dart';
 
 class ShakeAnimationOptions extends AnimationOption {
   final double begin;

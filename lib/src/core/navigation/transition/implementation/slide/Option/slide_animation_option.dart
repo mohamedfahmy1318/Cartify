@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:full_ecommerce_app/src/core/navigation/helper/Interfaces/helper_imports.dart';
 
 import '../../../../constants/imports_constants.dart';
-import '../../../../Helper/Interfaces/helper_imports.dart';
 
 class SlideAnimationOptions extends AnimationOption {
   final SlideDirection? direction;

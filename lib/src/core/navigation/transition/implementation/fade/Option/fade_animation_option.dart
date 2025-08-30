@@ -1,4 +1,5 @@
-import 'package:full_ecommerce_app/src/core/navigation/Helper/Interfaces/helper_imports.dart';
+
+import 'package:full_ecommerce_app/src/core/navigation/helper/Interfaces/helper_imports.dart';
 
 class FadeAnimationOptions extends AnimationOption {
   final double begin;

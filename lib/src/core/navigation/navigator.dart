@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:full_ecommerce_app/src/core/navigation/constants/imports_constants.dart';
-import 'package:full_ecommerce_app/src/core/navigation/Helper/Interfaces/helper_imports.dart';
+import 'package:full_ecommerce_app/src/core/navigation/helper/Interfaces/helper_imports.dart';
 
 import 'named_routes.dart';
 import 'page_router/imports_page_router_builder.dart';

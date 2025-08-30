@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:full_ecommerce_app/src/core/navigation/helper/Interfaces/helper_imports.dart';
 
 import '../../../../constants/imports_constants.dart';
-import '../../../../Helper/Interfaces/helper_imports.dart';
 import '../Option/size_animation_option.dart';
 
 class SizeAnimator extends Animator<double>

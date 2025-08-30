@@ -1,5 +1,6 @@
+import 'package:full_ecommerce_app/src/core/navigation/helper/Interfaces/helper_imports.dart';
+
 import '../constants/imports_constants.dart';
-import '../Helper/Interfaces/helper_imports.dart';
 import 'factory/transition_creator.dart';
 import 'implementation/cupertino/Options/cupertino_animation_option.dart';
 import 'implementation/cupertino/cupertino_transition_animation.dart';
