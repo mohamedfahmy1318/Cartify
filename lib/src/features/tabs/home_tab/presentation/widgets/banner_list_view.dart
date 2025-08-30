@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
@@ -18,11 +17,17 @@ class BannerListView extends StatelessWidget {
       builder: (context, state) {
         switch (state.bannersStatus) {
           case BaseStatus.loading:
-            return CustomLoading.showLoadingView();
+            return SizedBox(
+              height: 120.h, // Fixed height for loading state
+              child: CustomLoading.showLoadingView(),
+            );
           case BaseStatus.success:
             return _buildSuccessList(state);
           case BaseStatus.error:
-            return const NotContainData();
+            return SizedBox(
+              height: 120.h, // Fixed height for error state
+              child: const NotContainData(),
+            );
           case BaseStatus.initial:
             return const SizedBox();
         }
@@ -32,13 +37,16 @@ class BannerListView extends StatelessWidget {
 
   Widget _buildSuccessList(HomeTabState state) {
     if (state.banners.isEmpty) {
-      return const NotContainData();
+      return SizedBox(
+        height: 45.h,
+        child: const NotContainData(),
+      );
     }
+    
     return SizedBox(
-      height: 36.h,
+      height: 40.h, // Changed from 36.h to 40.h to show banners properly
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 8.w),
         itemCount: state.banners.length,
         itemBuilder: (context, index) {
           final banner = state.banners[index];

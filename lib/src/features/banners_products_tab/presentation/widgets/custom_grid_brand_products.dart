@@ -23,7 +23,7 @@ class CustomGridBrandProduct extends StatelessWidget {
       builder: (context, state) {
         switch (state.productsStatus) {
           case BaseStatus.initial:
-            return buildInitialWidget();
+            return const SizedBox();
           case BaseStatus.loading:
             return CustomLoading.showLoadingView();
           case BaseStatus.success:
@@ -58,7 +58,7 @@ class CustomGridBrandProduct extends StatelessWidget {
             Go.toNamed(NamedRoutes.productDetail, arguments: productbrand.id);
           },
           child: ProductCard(
-            banner: productbrand,
+            product: productbrand,
             onFavoriteToggle: () {
               favoritesCubit.toggleFavorite(
                 FavEntity(

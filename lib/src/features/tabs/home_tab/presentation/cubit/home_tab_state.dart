@@ -10,40 +10,34 @@ final class HomeTabState extends Equatable {
   final BaseStatus categoriesStatus;
   final List<CategoryEntity> categories;
   final String categoriesErrorMessage;
-
   // Banners State
   final BaseStatus bannersStatus;
   final List<BannerEntity> banners;
   final String bannersErrorMessage;
-
-  // Products State
+    // Products State
   final BaseStatus productsStatus;
   final List<ProductEntity> products;
   final String productsErrorMessage;
-
-  // Pagination for Products
+  // Pagination State للـ Banners
   final int currentPage;
   final int totalPages;
   final int totalResults;
   final bool hasNextPage;
-  final bool isLoadingMore;
+  final bool isLoadingMore; // للـ pagination loading
 
   const HomeTabState({
     // Categories
     required this.categoriesStatus,
     required this.categories,
     this.categoriesErrorMessage = ConstantManager.emptyText,
-
     // Banners
     required this.bannersStatus,
     required this.banners,
     this.bannersErrorMessage = ConstantManager.emptyText,
-
     // Products
     required this.productsStatus,
     required this.products,
     this.productsErrorMessage = ConstantManager.emptyText,
-
     // Pagination
     this.currentPage = 1,
     this.totalPages = 1,
@@ -73,7 +67,6 @@ final class HomeTabState extends Equatable {
     BaseStatus? bannersStatus,
     List<BannerEntity>? banners,
     String? bannersErrorMessage,
-
     // Products
     BaseStatus? productsStatus,
     List<ProductEntity>? products,
@@ -87,16 +80,23 @@ final class HomeTabState extends Equatable {
     bool? isLoadingMore,
   }) {
     return HomeTabState(
+      // Categories
       categoriesStatus: categoriesStatus ?? this.categoriesStatus,
       categories: categories ?? this.categories,
       categoriesErrorMessage:
           categoriesErrorMessage ?? this.categoriesErrorMessage,
+
+      // Banners
       bannersStatus: bannersStatus ?? this.bannersStatus,
       banners: banners ?? this.banners,
       bannersErrorMessage: bannersErrorMessage ?? this.bannersErrorMessage,
+
+      // Products
       productsStatus: productsStatus ?? this.productsStatus,
       products: products ?? this.products,
       productsErrorMessage: productsErrorMessage ?? this.productsErrorMessage,
+
+      // Pagination
       currentPage: currentPage ?? this.currentPage,
       totalPages: totalPages ?? this.totalPages,
       totalResults: totalResults ?? this.totalResults,
@@ -107,19 +107,24 @@ final class HomeTabState extends Equatable {
 
   @override
   List<Object> get props => [
+    // Categories
     categoriesStatus,
     categories,
     categoriesErrorMessage,
+
+    // Banners
     bannersStatus,
     banners,
     bannersErrorMessage,
+    // Products
     productsStatus,
     products,
     productsErrorMessage,
+
+    // Pagination
     currentPage,
     totalPages,
     totalResults,
     hasNextPage,
     isLoadingMore,
-  ];
-}
+  ];}

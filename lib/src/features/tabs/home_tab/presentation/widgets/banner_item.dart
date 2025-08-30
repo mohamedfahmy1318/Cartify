@@ -49,18 +49,18 @@ class _BannerItemState extends State<BannerItem>
             width: 100.w, // Fixed width for proper layout in ListView
             margin: EdgeInsets.symmetric(horizontal: 4.w),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppCircular.r20),
+              borderRadius: BorderRadius.circular(AppCircular.r10),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(AppCircular.r20),
+              borderRadius: BorderRadius.circular(AppCircular.r10),
               child: SizedBox(
                 child: Stack(
                   children: [
                     // Main image
                     CachedImage(
                       url: widget.banner.image,
-                      fit: BoxFit.cover,
-                      borderRadius: BorderRadius.circular(AppCircular.r20),
+                      fit: BoxFit.contain,
+                      borderRadius: BorderRadius.circular(AppCircular.r10),
                       bgColor: AppColors.white,
                       boxShape: BoxShape.rectangle,
                     ),
@@ -68,12 +68,12 @@ class _BannerItemState extends State<BannerItem>
                     // Gradient overlay for better text readability
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(AppCircular.r20),
+                        borderRadius: BorderRadius.circular(AppCircular.r10),
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            AppColors.primary.withOpacity(0.44),
+                            AppColors.primary.withOpacity(0.7),
                             Colors.black.withOpacity(0.33),
                           ],
                         ),

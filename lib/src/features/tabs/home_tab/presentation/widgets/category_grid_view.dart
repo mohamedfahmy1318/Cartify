@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
@@ -24,11 +25,17 @@ class _CategoryGridViewState extends State<CategoryGridView> {
       builder: (context, state) {
         switch (state.categoriesStatus) {
           case BaseStatus.loading:
-            return CustomLoading.showLoadingView();
+            return SizedBox(
+              height: 200.h,
+              child: CustomLoading.showLoadingView(),
+            );
           case BaseStatus.success:
             return _buildSuccessGrid(state);
           case BaseStatus.error:
-            return const NotContainData();
+            return SizedBox(
+              height: 200.h,
+              child: const NotContainData(),
+            );
           case BaseStatus.initial:
             return buildInitialWidget();
         }
@@ -38,16 +45,22 @@ class _CategoryGridViewState extends State<CategoryGridView> {
 
   Widget _buildSuccessGrid(HomeTabState state) {
     if (state.categories.isEmpty) {
-      return const NotContainData();
+      return SizedBox(
+        height: 200.h,
+        child: const NotContainData(),
+      );
     }
-    return Expanded(
+
+  
+    return SizedBox(
+      height: 170.h,
       child: GridView.builder(
         physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        padding: EdgeInsets.zero,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
-          childAspectRatio: 1.2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 12,
+          childAspectRatio: 1.1,
+          crossAxisSpacing: 12.w,
         ),
         itemCount: state.categories.length,
         itemBuilder: (context, index) {
@@ -57,15 +70,16 @@ class _CategoryGridViewState extends State<CategoryGridView> {
       ),
     );
   }
-}
 
-Widget buildInitialWidget() {
-  return const Expanded(
-    child: Center(
-      child: Text(
-        'Tap to load categories',
-        style: TextStyle(fontSize: 16, color: AppColors.grey),
+  Widget buildInitialWidget() {
+    return SizedBox(
+      height: 100.h,
+      child: const Center(
+        child: Text(
+          'Tap to load categories',
+          style: TextStyle(fontSize: 16, color: AppColors.grey),
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

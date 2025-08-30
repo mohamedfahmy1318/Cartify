@@ -21,7 +21,7 @@ class HomeTabScreen extends StatelessWidget {
             )
             ..fetchCategories(limit: 6)
             ..fetchBanners(limit: 8)
-            ..fetchProducts(limit: 10),
+            ..fetchProducts(limit: 8),
       child: const _HomeTabView(),
     );
   }
