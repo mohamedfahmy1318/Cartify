@@ -23,13 +23,13 @@ class HomeTabViewBody extends StatelessWidget {
         ),
         child: Column(
           children: [
-                        10.szH,
-
-            const TabHomHeader(titleSearch: 'Search products...'),
             10.szH,
-  
+
+            const TabHomeHeader(titleSearch: 'Search products...'),
+            10.szH,
+
             CustomBannerSlider(),
-          10.szH,
+            10.szH,
             CategoryAndBannerHeader(
               title: 'Categories',
               onTap: () {
@@ -37,11 +37,10 @@ class HomeTabViewBody extends StatelessWidget {
               },
             ),
             5.szH, // Reduced spacing
-            
             // Make sure CategoryGridView has intrinsic height
             const CategoryGridView(),
             4.szH,
-            
+
             CategoryAndBannerHeader(
               title: 'Brands',
               onTap: () {
@@ -49,18 +48,18 @@ class HomeTabViewBody extends StatelessWidget {
               },
             ),
             9.szH, // Reduced spacing
-            
+
             const BannerListView(),
             8.szH,
-            
+
             CategoryAndBannerHeader(
               title: 'Most Priced',
               onTap: () {
                 // Handle view all products tap
-                //Go.toNamed(NamedRoutes.viewAllProducts);
+                Go.toNamed(NamedRoutes.viewAllProducts);
               },
             ),
-            
+
             const MostProductListView(),
           ],
         ),

@@ -55,7 +55,7 @@ class _FavoritesTabViewBodyState extends State<FavoritesTabViewBody> {
               child: Container(
                 color: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: const TabHomHeader(
+                child: const TabHomeHeader(
                   titleSearch: ' Favorites products...',
                 ),
               ),
@@ -75,7 +75,7 @@ class _FavoritesTabViewBodyState extends State<FavoritesTabViewBody> {
             child: Container(
               color: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: const TabHomHeader(titleSearch: ' Favorites products...'),
+              child: const TabHomeHeader(titleSearch: ' Favorites products...'),
             ),
           ),
         ),

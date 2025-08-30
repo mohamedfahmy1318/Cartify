@@ -17,6 +17,7 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/g
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_banner.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_category.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_products.dart';
 import 'named_routes.dart';
 import 'page_router/imports_page_router_builder.dart';
 
@@ -94,6 +95,17 @@ class RouterGenerator {
           create: (context) =>
               ProductDetailsCubit(sl<GetProductDetailsUseCase>()),
           child: ProductDetailsScreen(productId: settings.arguments as String),
+        ),
+        settings: settings,
+      ),
+      NamedRoutes.viewAllProducts => _pageRouter.build(
+        BlocProvider(
+          create: (context) => HomeTabCubit(
+            sl<GetCategoryUseCase>(),
+            sl<GetBannersUseCase>(),
+            sl<GetProductsUseCase>(),
+          ),
+          child: const ViewAllProducts(),
         ),
         settings: settings,
       ),

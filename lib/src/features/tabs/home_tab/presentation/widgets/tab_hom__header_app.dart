@@ -7,16 +7,16 @@ import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_search_app_field.dart';
 import 'package:geocoding/geocoding.dart';
 
-class TabHomHeader extends StatefulWidget {
+class TabHomeHeader extends StatefulWidget {
   final String titleSearch;
 
-  const TabHomHeader({super.key, required this.titleSearch});
+  const TabHomeHeader({super.key, required this.titleSearch});
 
   @override
-  State<TabHomHeader> createState() => _TabHomHeaderState();
+  State<TabHomeHeader> createState() => _TabHomeHeaderState();
 }
 
-class _TabHomHeaderState extends State<TabHomHeader> {
+class _TabHomeHeaderState extends State<TabHomeHeader> {
   String? _currentLocation;
 
   final _locationService = LocationService();

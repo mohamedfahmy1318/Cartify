@@ -6,12 +6,15 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/g
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_state.dart';
 
 class HomeTabCubit extends Cubit<HomeTabState> {
-  HomeTabCubit(this.fetchCategoriesUseCase, this.getBannersUseCase, this.getProductsUseCase)
-    : super(HomeTabState.initial());
+  HomeTabCubit(
+    this.fetchCategoriesUseCase,
+    this.getBannersUseCase,
+    this.getProductsUseCase,
+  ) : super(HomeTabState.initial());
 
   final GetCategoryUseCase fetchCategoriesUseCase;
   final GetBannersUseCase getBannersUseCase;
-    final GetProductsUseCase getProductsUseCase;
+  final GetProductsUseCase getProductsUseCase;
 
   // CATEGORIES METHODS
   void fetchCategories({int? limit}) async {
@@ -33,6 +36,7 @@ class HomeTabCubit extends Cubit<HomeTabState> {
       ),
     );
   }
+
   /// جلب الـ Banners من الصفحة الأولى (Fresh Load)
   void fetchBanners({int limit = 5}) async {
     emit(state.copyWith(bannersStatus: BaseStatus.loading));
@@ -110,7 +114,7 @@ class HomeTabCubit extends Cubit<HomeTabState> {
   }
 
   // ------------------- PRODUCTS -------------------
-  void fetchProducts({int limit = 8}) async {
+  void fetchProducts({int limit = 5}) async {
     emit(state.copyWith(productsStatus: BaseStatus.loading));
 
     final params = GetProductsParams(limit: limit, page: 1, sort: '-price');
@@ -136,7 +140,7 @@ class HomeTabCubit extends Cubit<HomeTabState> {
     );
   }
 
-  void loadMoreProducts({int limit = 8}) async {
+  void loadMoreProducts({int limit = 5}) async {
     if (!state.hasNextPage || state.isLoadingMore) return;
 
     emit(state.copyWith(isLoadingMore: true));
@@ -173,9 +177,24 @@ class HomeTabCubit extends Cubit<HomeTabState> {
     );
   }
 
+  void refreshProducts({int limit = 5}) async {
+    // إعادة تعيين الحالة والعودة للصفحة الأولى
+    emit(
+      state.copyWith(
+        productsStatus: BaseStatus.loading,
+        products: [],
+        currentPage: 1,
+        hasNextPage: false,
+      ),
+    );
+
+    fetchProducts(limit: limit);
+  }
+
   /// تحميل جميع البيانات (Categories + Banners)
   void fetchHomeData({int? categoriesLimit, int bannersLimit = 5}) {
     fetchCategories(limit: categoriesLimit);
     fetchBanners(limit: bannersLimit);
+    fetchProducts(limit: 8);
   }
 }
