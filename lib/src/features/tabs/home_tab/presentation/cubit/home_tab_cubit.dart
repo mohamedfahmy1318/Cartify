@@ -3,6 +3,7 @@ import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_products_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_sub_category_onCategory.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_state.dart';
 
 class HomeTabCubit extends Cubit<HomeTabState> {
@@ -10,11 +11,13 @@ class HomeTabCubit extends Cubit<HomeTabState> {
     this.fetchCategoriesUseCase,
     this.getBannersUseCase,
     this.getProductsUseCase,
+    this.getSubCategoryUseCase,
   ) : super(HomeTabState.initial());
 
   final GetCategoryUseCase fetchCategoriesUseCase;
   final GetBannersUseCase getBannersUseCase;
   final GetProductsUseCase getProductsUseCase;
+  final GetSubCategoryUseCase getSubCategoryUseCase;
 
   // CATEGORIES METHODS
   void fetchCategories({int? limit}) async {
@@ -113,11 +116,17 @@ class HomeTabCubit extends Cubit<HomeTabState> {
     fetchBanners(limit: limit);
   }
 
-  // ------------------- PRODUCTS -------------------
-  void fetchProducts({int limit = 5}) async {
+  // ------------------- PRODUCTS ------------
+  void fetchProducts({int? limit , String? categoryId, String? subCategoryId}) async {
     emit(state.copyWith(productsStatus: BaseStatus.loading));
 
-    final params = GetProductsParams(limit: limit, page: 1, sort: '-price');
+    final params = GetProductsParams(
+      limit: limit,
+      page: 1,
+      sort: '-price',
+      categoryId: categoryId,
+      subCategoryId: subCategoryId,
+    );
     final result = await getProductsUseCase.call(params);
 
     result.when(
@@ -190,6 +199,27 @@ class HomeTabCubit extends Cubit<HomeTabState> {
 
     fetchProducts(limit: limit);
   }
+  /// جلب SubCategories
+void fetchSubCategories(String categoryId) async {
+  emit(state.copyWith(subCategoriesStatus: BaseStatus.loading));
+
+  final result = await getSubCategoryUseCase.call(categoryId);
+
+  result.when(
+    (success) => emit(
+      state.copyWith(
+        subCategoriesStatus: BaseStatus.success,
+        subCategories: success.data,
+      ),
+    ),
+    (error) => emit(
+      state.copyWith(
+        subCategoriesStatus: BaseStatus.error,
+        subCategoriesErrorMessage: error.message,
+      ),
+    ),
+  );
+}
 
   /// تحميل جميع البيانات (Categories + Banners)
   void fetchHomeData({int? categoriesLimit, int bannersLimit = 5}) {

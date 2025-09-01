@@ -9,11 +9,19 @@ class GetProductsParams extends Equatable {
   final int? limit;
   final String? sort;
   final int? page;
+  final String? categoryId;
+  final String? subCategoryId;
 
-  const GetProductsParams({this.limit, this.sort, this.page});
+  const GetProductsParams({
+    this.limit,
+    this.sort,
+    this.page,
+    this.categoryId,
+    this.subCategoryId,
+  });
 
   @override
-  List<Object?> get props => [limit, sort, page];
+  List<Object?> get props => [limit, sort, page, categoryId, subCategoryId];
 }
 
 class GetProductsUseCase
@@ -30,6 +38,8 @@ class GetProductsUseCase
       limit: params?.limit,
       sort: params?.sort,
       page: params?.page,
+      categoryId: params?.categoryId,
+      subCategoryId: params?.subCategoryId,
     );
   }
 }

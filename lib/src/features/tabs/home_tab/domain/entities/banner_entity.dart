@@ -20,3 +20,5 @@ class BannerEntity extends Equatable {
   @override
   List<Object?> get props => [id, name, slug, image, createdAt, updatedAt];
 }
+
+

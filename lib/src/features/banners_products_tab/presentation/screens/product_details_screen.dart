@@ -12,7 +12,7 @@ import 'package:full_ecommerce_app/src/core/extensions/sized_box_helper.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/image_widgets/cached_image.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_banner_entity.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_entity.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/use_cases/get_product_details_use_case.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/product_details/product_details_cubit.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/product_details/products_details_state.dart';

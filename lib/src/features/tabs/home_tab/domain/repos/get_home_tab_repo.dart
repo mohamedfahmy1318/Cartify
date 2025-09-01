@@ -2,6 +2,7 @@ import 'package:full_ecommerce_app/src/core/error/failure.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/product_response_entity.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/category_entity.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/banner_response_entity.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/sub_category_response.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 abstract class GetHomeTabRepository {
@@ -14,5 +15,8 @@ abstract class GetHomeTabRepository {
     int? limit,
     String? sort,
     int? page,
+    String? categoryId,
+    String? subCategoryId,
   });
+  Future<Result<SubCategoryResponseEntity, Failure>> getSubCategoriesFromCategory(String categoryId);
 }

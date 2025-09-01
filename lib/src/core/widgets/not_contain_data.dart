@@ -16,7 +16,7 @@ class NotContainData extends StatelessWidget {
         children: [
           AppAssets.lottie.noData.lottie(
             width: MediaQuery.of(context).size.width * .7,
-            height: MediaQuery.of(context).size.height * .3,
+            height: MediaQuery.of(context).size.height * .1,
           ),
           SizedBox(height: AppSize.sH10),
           SizedBox(height: AppSize.sH10),

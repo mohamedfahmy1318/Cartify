@@ -16,4 +16,8 @@ class ApiConstants {
   static const String getProducts = 'products';
   //favorites
   static const String favorites = 'wishlist';
+  //SubCategories
+  static const String getSubCategories = 'subcategories';
+  //Cart
+  static const String cart = 'cart';
 }

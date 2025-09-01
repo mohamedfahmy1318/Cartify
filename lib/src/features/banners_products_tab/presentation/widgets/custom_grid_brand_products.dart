@@ -6,13 +6,10 @@ import 'package:full_ecommerce_app/src/core/navigation/named_routes.dart';
 import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
-import 'package:full_ecommerce_app/src/core/widgets/custom_messages.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/brand_product_cubit.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/brand_products_state.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/widgets/product_card.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category_grid_view.dart';
-import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/domain/entities/fav_entity.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/widgets/product_success_build.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_cubit.dart';
 
 class CustomGridBrandProduct extends StatelessWidget {
@@ -57,38 +54,7 @@ class CustomGridBrandProduct extends StatelessWidget {
           onTap: () {
             Go.toNamed(NamedRoutes.productDetail, arguments: productbrand.id);
           },
-          child: ProductCard(
-            product: productbrand,
-            onFavoriteToggle: () {
-              favoritesCubit.toggleFavorite(
-                FavEntity(
-                  id: productbrand.id,
-                  title: productbrand.title,
-                  price: productbrand.price,
-                  imageCover: productbrand.imageCover,
-                  brand: productbrand.brand,
-                  category: productbrand.category,
-                  ratingsAverage: productbrand.ratingsAverage,
-                  description: productbrand.description,
-                  images: productbrand.images,
-                  quantity: productbrand.quantity,
-                  createdAt: productbrand.createdAt,
-                  ratingsQuantity: productbrand.ratingsQuantity,
-                  slug: productbrand.slug,
-                  sold: productbrand.sold,
-                  subcategory: productbrand.subcategory,
-                  updatedAt: productbrand.updatedAt,
-                ),
-              );
-              MessageUtils.showSimpleToast(
-                msg: isFav ? 'Removed from favorites ' : 'Added to favorites',
-                color: isFav ? Colors.red : Colors.green,
-                context,
-              );
-            },
-            onAddToCart: () {},
-            isFavorite: isFav,
-          ),
+          child: ProductSuccessBuild(product: productbrand, isFav: isFav)
         );
       },
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/features/app_home/presentation/widgets/app_bottom_bar.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/screens/cart_tab_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/categories_tab/presentation/screens/categories_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/home_tab_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/profile_tab/presentation/screens/profile_Screen.dart';
@@ -28,6 +29,8 @@ class _AppHomeViewState extends State<_AppHomeView> {
   final List<Widget> screens = <Widget>[
     const HomeTabScreen(),
     const CategoriesTabScreen(),
+        const CartTabScreen(),
+
     const FavoritesTabScreen(),
     const ProfileTabScreen(),
   ];

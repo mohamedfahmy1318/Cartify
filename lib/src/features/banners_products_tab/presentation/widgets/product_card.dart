@@ -4,7 +4,7 @@ import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/core/widgets/image_widgets/cached_image.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_banner_entity.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_entity.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
@@ -95,7 +95,7 @@ class ProductCard extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 8.r),
+              padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 6.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
@@ -111,7 +111,7 @@ class ProductCard extends StatelessWidget {
                     height: 1.1,
                   ),
 
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 2.h),
 
                   // Rating
                   Row(

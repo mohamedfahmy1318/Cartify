@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_banner_entity.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_entity.dart';
 
 class ProductsMetadataEntity extends Equatable {
   final int currentPage;

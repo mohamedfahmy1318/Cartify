@@ -5,6 +5,7 @@ import 'package:full_ecommerce_app/src/core/network/network_service.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/data/models/products_response_model.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/data/models/category_response.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/data/models/banner_response.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/data/models/sub_categor_resoinse.dart';
 
 abstract class HomeTabRemoteDataSource {
   Future<List<CategoryModel>> getCategories({int? limit});
@@ -13,7 +14,10 @@ abstract class HomeTabRemoteDataSource {
     int? limit,
     String? sort,
     int? page,
+    String? categoryId, // للـ Category
+    String? subCategoryId, // للـ SubCategory
   });
+  Future<SubCategoryResponse> getSubCategoriesFromCategory(String categoryId);
 }
 
 class HomeTabRemoteDataSourceImpl implements HomeTabRemoteDataSource {
@@ -69,22 +73,54 @@ class HomeTabRemoteDataSourceImpl implements HomeTabRemoteDataSource {
     int? limit,
     String? sort,
     int? page,
+    String? categoryId,
+    String? subCategoryId,
   }) async {
-    Map<String, dynamic> queryParameters = {};
-    if (limit != null) queryParameters['limit'] = limit.toString();
-    if (sort != null) queryParameters['sort'] = sort;
-    if (page != null) queryParameters['page'] = page.toString();
-
+    // Build the base URL
+    String url = ApiConstants.getProducts;
+    
+    // Build query parameters manually
+    final queryParams = <String>[];
+    
+    if (limit != null) queryParams.add('limit=${limit.toString()}');
+    if (sort != null) queryParams.add('sort=$sort');
+    if (page != null) queryParams.add('page=${page.toString()}');
+    
+    // Add category filters as separate parameters
+    if (categoryId != null) queryParams.add('category[in]=$categoryId');
+    if (subCategoryId != null) queryParams.add('category[in]=$subCategoryId');
+    
+    // Combine all parameters
+    if (queryParams.isNotEmpty) {
+      url += '?${queryParams.join('&')}';
+    }
+    
     final networkRequest = NetworkRequest(
       method: RequestMethod.get,
-      path: ApiConstants.getProducts,
-      queryParameters: queryParameters,
+      path: url,
+    );
+
+    final result = await sl<NetworkService>().callApi(
+      networkRequest,
+      mapper: (json) => ProductsResponseModel.fromJson(json as Map<String, dynamic>),
+    );
+    return result.data;
+  }
+
+  @override
+  Future<SubCategoryResponse> getSubCategoriesFromCategory(
+    String categoryId,
+  ) async {
+    final networkRequest = NetworkRequest(
+      method: RequestMethod.get,
+      path:
+          '${ApiConstants.getAllCategories}/$categoryId/${ApiConstants.getSubCategories}',
     );
 
     final result = await sl<NetworkService>().callApi(
       networkRequest,
       mapper: (json) =>
-          ProductsResponseModel.fromJson(json as Map<String, dynamic>),
+          SubCategoryResponse.fromJson(json as Map<String, dynamic>),
     );
     return result.data;
   }

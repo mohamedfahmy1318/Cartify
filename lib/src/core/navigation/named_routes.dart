@@ -3,7 +3,6 @@ enum NamedRoutes {
   appHome('/app-home'),
   register('/register'),
   pinCode('/pin-code'),
-  viewAllCategory('/view-all-categories'),
   viewAllBanners('/view-all-banners'),
   bannerProducts('/banner-products'),
   productDetail('/product-detail'),

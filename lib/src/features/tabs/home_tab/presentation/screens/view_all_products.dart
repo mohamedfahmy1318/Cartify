@@ -10,10 +10,10 @@ import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_messages.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/widgets/product_card.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_state.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_search_app_field.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/tab_hom__header_app.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/domain/entities/fav_entity.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_cubit.dart';
 
@@ -106,7 +106,7 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
       padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
       child: Column(
         children: [
-          Expanded(flex: 1, child: const CustomSearchAppField(titleSearch: 'Search Products')),
+          const Expanded(flex: 1, child: CustomSearchAppField(titleSearch: 'Search Products')),
           Expanded(
             flex: 10,
             child: GridView.builder(
@@ -136,7 +136,7 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
                   child: ProductCard(
                     product: state.products[index],
                     onFavoriteToggle: () {
-                      context.read<FavoritesCubit>().toggleFavorite(
+                      favoritesCubit.toggleFavorite(
                         FavEntity(
                           id: product.id,
                           title: product.title,
@@ -165,9 +165,14 @@ class _ViewAllProductsState extends State<ViewAllProducts> {
                       );
                     },
                     onAddToCart: () {
-                      // Add your cart logic here
+                      context.read<CartCubit>().addToCart(product.id );
+                      MessageUtils.showSimpleToast(
+                        msg: 'Added to cart',
+                        color: Colors.green,
+                        context,
+                      );
                     },
-                    isFavorite: context.read<FavoritesCubit>().isFavorite(
+                    isFavorite: favoritesCubit.isFavorite(
                       product.id,
                     ),
                   ),

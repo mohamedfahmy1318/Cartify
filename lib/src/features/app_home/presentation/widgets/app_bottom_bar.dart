@@ -51,13 +51,18 @@ class AppBottomBar extends StatelessWidget {
               label: 'Categories',
             ),
             BottomNavigationBarItem(
-              icon: _buildIcon(Icons.favorite_outline_rounded, 2),
-              activeIcon: _buildActiveIcon(Icons.favorite_rounded, 2),
+              icon: _buildIcon(Icons.shopping_cart_outlined, 2),
+              activeIcon: _buildActiveIcon(Icons.shopping_cart, 2),
+              label: 'Cart',
+            ),
+            BottomNavigationBarItem(
+              icon: _buildIcon(Icons.favorite_outline_rounded, 3),
+              activeIcon: _buildActiveIcon(Icons.favorite_rounded, 3),
               label: 'Favorites',
             ),
             BottomNavigationBarItem(
-              icon: _buildIcon(Icons.person_outline_rounded, 3),
-              activeIcon: _buildActiveIcon(Icons.person_rounded, 3),
+              icon: _buildIcon(Icons.person_outline_rounded, 4),
+              activeIcon: _buildActiveIcon(Icons.person_rounded, 4),
               label: 'Profile',
             ),
           ],

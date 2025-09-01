@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/core/widgets/image_widgets/cached_image.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_banner_entity.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_entity.dart';
 
 class MostProductCard extends StatefulWidget {
   const MostProductCard({super.key, required this.product});

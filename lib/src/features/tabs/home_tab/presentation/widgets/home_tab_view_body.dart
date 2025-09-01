@@ -31,9 +31,9 @@ class HomeTabViewBody extends StatelessWidget {
             CustomBannerSlider(),
             10.szH,
             CategoryAndBannerHeader(
+              showViewAll: false,
               title: 'Categories',
               onTap: () {
-                Go.toNamed(NamedRoutes.viewAllCategory);
               },
             ),
             5.szH, // Reduced spacing
@@ -42,6 +42,7 @@ class HomeTabViewBody extends StatelessWidget {
             4.szH,
 
             CategoryAndBannerHeader(
+              showViewAll: true,
               title: 'Brands',
               onTap: () {
                 Go.toNamed(NamedRoutes.viewAllBanners);
@@ -53,6 +54,7 @@ class HomeTabViewBody extends StatelessWidget {
             8.szH,
 
             CategoryAndBannerHeader(
+              showViewAll: true,
               title: 'Most Priced',
               onTap: () {
                 // Handle view all products tap

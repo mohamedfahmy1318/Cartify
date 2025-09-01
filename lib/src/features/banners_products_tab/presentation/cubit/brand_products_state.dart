@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_banner_entity.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_entity.dart';
 
 final class BrandProductState extends Equatable {
   // BrandProductState State

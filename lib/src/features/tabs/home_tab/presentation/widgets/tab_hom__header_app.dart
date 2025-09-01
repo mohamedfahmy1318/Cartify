@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/extensions/sized_box_helper.dart';
 import 'package:full_ecommerce_app/src/core/helpers/location_services.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_search_app_field.dart';
 import 'package:geocoding/geocoding.dart';
 
@@ -60,7 +63,7 @@ class _TabHomeHeaderState extends State<TabHomeHeader> {
             const Spacer(),
             AppText(
               _currentLocation ?? "Loading...",
-              fontSize: FontSize.s16,
+              fontSize: FontSize.s13,
               fontWeight: FontWeightManager.medium,
               color: AppColors.grey,
             ),
@@ -71,15 +74,48 @@ class _TabHomeHeaderState extends State<TabHomeHeader> {
         Row(
           children: [
             CustomSearchAppField(titleSearch: widget.titleSearch),
-            IconButton(
-              icon: Icon(
-                Icons.shopping_cart_outlined,
-                color: AppColors.primary,
-                size: AppSize.sH25,
-              ),
-              onPressed: () {
-                // Handle shopping cart icon press
-              },
+            Stack(
+              children: [
+                IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart_outlined,
+                    color: AppColors.primary,
+                    size: AppSize.sH25,
+                  ),
+                  onPressed: () {
+                    // Handle shopping cart icon press
+                  },
+                ),
+                if ((context
+                        .watch<CartCubit>()
+                        .state
+                        .cartResponseEntity
+                        ?.numOfCartItems ??
+                    0) >
+                    0)
+                  Positioned(
+                    right: 0,
+                    child: Container(
+                      padding: EdgeInsets.all(4.r),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: AppText(
+                        context
+                            .watch<CartCubit>()
+                            .state
+                            .cartResponseEntity
+                            ?.numOfCartItems
+                            .toString() ??
+                            '0',
+                        fontSize: FontSize.s12,
+                        fontWeight: FontWeightManager.bold,
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ],
         ),

@@ -6,6 +6,7 @@ import 'package:full_ecommerce_app/src/features/auth/forgot_password/di/forgot_p
 import 'package:full_ecommerce_app/src/features/auth/login/di/login_di.dart';
 import 'package:full_ecommerce_app/src/features/auth/register/di/register_di.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/di/barnd_produts_tab_di.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/di/cart_di.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/di/home_tab_di.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/di/fav_di.dart';
 
@@ -19,6 +20,7 @@ void setUpServiceLocator() {
   homeTabDI();
   brandProductsDI();
   favoritesProductsDI();
+  cartDI(); 
 }
 
 void setUpGeneralDependencies() {

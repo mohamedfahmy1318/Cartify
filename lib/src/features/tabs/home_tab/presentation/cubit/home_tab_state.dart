@@ -1,9 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
-import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_banner_entity.dart';
+import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_entity.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/category_entity.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/banner_entity.dart';
 import 'package:full_ecommerce_app/src/config/res/constants_manager.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/entities/sub_category_entity.dart';
 
 final class HomeTabState extends Equatable {
   // Categories State
@@ -14,10 +15,15 @@ final class HomeTabState extends Equatable {
   final BaseStatus bannersStatus;
   final List<BannerEntity> banners;
   final String bannersErrorMessage;
-    // Products State
+  // Products State
   final BaseStatus productsStatus;
   final List<ProductEntity> products;
   final String productsErrorMessage;
+  //subCategory
+  final BaseStatus subCategoriesStatus;
+  final List<SubCategoryEntity> subCategories;
+  final String subCategoriesErrorMessage;
+
   // Pagination State للـ Banners
   final int currentPage;
   final int totalPages;
@@ -38,6 +44,10 @@ final class HomeTabState extends Equatable {
     required this.productsStatus,
     required this.products,
     this.productsErrorMessage = ConstantManager.emptyText,
+    //subCategories
+    required this.subCategoriesStatus,
+    required this.subCategories,
+    this.subCategoriesErrorMessage = ConstantManager.emptyText,
     // Pagination
     this.currentPage = 1,
     this.totalPages = 1,
@@ -54,6 +64,8 @@ final class HomeTabState extends Equatable {
       banners: [],
       productsStatus: BaseStatus.initial,
       products: [],
+      subCategoriesStatus: BaseStatus.initial,
+      subCategories: [],
     );
   }
 
@@ -71,6 +83,10 @@ final class HomeTabState extends Equatable {
     BaseStatus? productsStatus,
     List<ProductEntity>? products,
     String? productsErrorMessage,
+    //subcategories
+    BaseStatus? subCategoriesStatus,
+    List<SubCategoryEntity>? subCategories,
+    String? subCategoriesErrorMessage,
 
     // Pagination
     int? currentPage,
@@ -95,7 +111,11 @@ final class HomeTabState extends Equatable {
       productsStatus: productsStatus ?? this.productsStatus,
       products: products ?? this.products,
       productsErrorMessage: productsErrorMessage ?? this.productsErrorMessage,
-
+      //subcategories
+      subCategoriesStatus: subCategoriesStatus ?? this.subCategoriesStatus,
+      subCategories: subCategories ?? this.subCategories,
+      subCategoriesErrorMessage:
+          subCategoriesErrorMessage ?? this.subCategoriesErrorMessage,
       // Pagination
       currentPage: currentPage ?? this.currentPage,
       totalPages: totalPages ?? this.totalPages,
@@ -120,6 +140,10 @@ final class HomeTabState extends Equatable {
     productsStatus,
     products,
     productsErrorMessage,
+    //subcategory
+    subCategoriesStatus,
+    subCategories,
+    subCategoriesErrorMessage,
 
     // Pagination
     currentPage,
@@ -127,4 +151,5 @@ final class HomeTabState extends Equatable {
     totalResults,
     hasNextPage,
     isLoadingMore,
-  ];}
+  ];
+}

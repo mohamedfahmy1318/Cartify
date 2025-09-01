@@ -5,6 +5,7 @@ import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/repos/get_h
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_products_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_sub_category_onCategory.dart';
 
 void homeTabDI() {
   sl.registerLazySingleton<GetCategoryUseCase>(
@@ -13,6 +14,9 @@ void homeTabDI() {
 
   sl.registerLazySingleton<GetBannersUseCase>(
     () => GetBannersUseCase(sl<GetHomeTabRepository>()),
+  );
+  sl.registerLazySingleton<GetSubCategoryUseCase>(
+    () => GetSubCategoryUseCase(sl<GetHomeTabRepository>()),
   );
   sl.registerLazySingleton<GetProductsUseCase>(
     () => GetProductsUseCase(sl<GetHomeTabRepository>()),

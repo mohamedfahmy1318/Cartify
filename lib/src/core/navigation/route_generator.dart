@@ -14,9 +14,9 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/presentatio
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_products_use_case.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_sub_category_onCategory.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_banner.dart';
-import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_category.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/screens/view_all_products.dart';
 import 'named_routes.dart';
 import 'page_router/imports_page_router_builder.dart';
@@ -47,23 +47,14 @@ class RouterGenerator {
         const PinCodeScreen(),
         settings: settings,
       ),
-      NamedRoutes.viewAllCategory => _pageRouter.build(
-        BlocProvider(
-          create: (context) => HomeTabCubit(
-            sl<GetCategoryUseCase>(),
-            sl<GetBannersUseCase>(),
-            sl<GetProductsUseCase>(),
-          ),
-          child: const ViewAllCategory(),
-        ),
-        settings: settings,
-      ),
+ 
       NamedRoutes.viewAllBanners => _pageRouter.build(
         BlocProvider(
           create: (context) => HomeTabCubit(
             sl<GetCategoryUseCase>(),
             sl<GetBannersUseCase>(),
             sl<GetProductsUseCase>(),
+            sl<GetSubCategoryUseCase>(),
           ),
           child: const ViewAllBanner(),
         ),
@@ -104,6 +95,7 @@ class RouterGenerator {
             sl<GetCategoryUseCase>(),
             sl<GetBannersUseCase>(),
             sl<GetProductsUseCase>(),
+            sl<GetSubCategoryUseCase>(),
           ),
           child: const ViewAllProducts(),
         ),
