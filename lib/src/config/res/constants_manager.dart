@@ -16,7 +16,7 @@ class ConstantManager {
   static const int pinCodeFieldsCount = 6;
   static const int maxLines = 4;
   static const double snackbarElevation = 4;
-  static const int snackbarDuration = 4;
+  static const int snackbarDuration = 1;
   static const int connectTimeoutDuration = 30;
   static const int receiveTimeoutDuration = 30;
   static const double customImageSliderAspectRatio = 3;

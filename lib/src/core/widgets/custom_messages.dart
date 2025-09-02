@@ -14,7 +14,7 @@ class MessageUtils {
     BuildContext? context,
   }) {
     final snackBar = SnackBar(
-      duration: const Duration(seconds: ConstantManager.snackbarDuration),
+      duration: const Duration(milliseconds: 750),
       content: Text(
         message,
         style: TextStyle(
@@ -39,6 +39,7 @@ class MessageUtils {
     Fluttertoast.showToast(
       msg: msg,
       toastLength: Toast.LENGTH_SHORT,
+      
       gravity: ToastGravity.BOTTOM,
       backgroundColor: color ?? AppColors.primary,
       textColor: textColor ?? AppColors.white,

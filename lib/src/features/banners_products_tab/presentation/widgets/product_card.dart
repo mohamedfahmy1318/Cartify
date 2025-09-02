@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/core/widgets/image_widgets/cached_image.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/domain/entities/products_entity.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductEntity product;
@@ -148,7 +150,7 @@ class ProductCard extends StatelessWidget {
                           children: [
                             AppText(
                               'EGP ${product.price - 380}',
-                              fontSize: FontSize.s14,
+                              fontSize: FontSize.s12,
                               color: AppColors.primary,
                               fontWeight: FontWeightManager.bold,
                             ),
@@ -165,11 +167,18 @@ class ProductCard extends StatelessWidget {
                       ),
 
                       // Add to Cart Button
-                      GestureDetector(
-                        onTap: onAddToCart,
-                        child: Container(
-                          padding: EdgeInsets.all(6.r),
-                          decoration: BoxDecoration(
+                      context.watch<CartCubit>().isInCart(product.id)
+                          ? AppText(
+                              'In Cart',
+                              fontSize: FontSize.s14,
+                              color: AppColors.primary,
+                              fontWeight: FontWeightManager.bold,
+                            )
+                          : GestureDetector(
+                              onTap: onAddToCart,
+                              child: Container(
+                                padding: EdgeInsets.all(6.r),
+                                decoration: BoxDecoration(
                             color: AppColors.primary,
                             borderRadius: BorderRadius.circular(6.r),
                             boxShadow: [
@@ -180,11 +189,11 @@ class ProductCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: Icon(
-                            Icons.add_shopping_cart,
-                            color: AppColors.white,
-                            size: 16.r,
-                          ),
+                          child:Icon(
+                                  Icons.add_shopping_cart,
+                                  color: AppColors.white,
+                                  size: 16.r,
+                                ),
                         ),
                       ),
                     ],

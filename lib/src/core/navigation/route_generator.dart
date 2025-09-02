@@ -11,6 +11,7 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/presentatio
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/cubit/product_details/product_details_cubit.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/screens/banners_products_screen.dart';
 import 'package:full_ecommerce_app/src/features/banners_products_tab/presentation/screens/product_details_screen.dart';
+import 'package:full_ecommerce_app/src/features/checkout/presentation/screens/check_out_screen.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_banners_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_products_use_case.dart';
@@ -47,7 +48,7 @@ class RouterGenerator {
         const PinCodeScreen(),
         settings: settings,
       ),
- 
+
       NamedRoutes.viewAllBanners => _pageRouter.build(
         BlocProvider(
           create: (context) => HomeTabCubit(
@@ -99,6 +100,11 @@ class RouterGenerator {
           ),
           child: const ViewAllProducts(),
         ),
+        settings: settings,
+      ),
+      NamedRoutes.checkout => _pageRouter.build(
+        const CheckoutScreen(),
+
         settings: settings,
       ),
     };

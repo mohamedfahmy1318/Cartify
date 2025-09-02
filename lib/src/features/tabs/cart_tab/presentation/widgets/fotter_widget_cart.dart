@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
+import 'package:full_ecommerce_app/src/core/navigation/named_routes.dart';
+import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/core/widgets/buttons/default_button.dart';
 import 'package:full_ecommerce_app/src/features/tabs/cart_tab/domain/entities/cart_response_entity.dart';
@@ -31,7 +33,9 @@ class FooterWidgetCart extends StatelessWidget {
           isFitted: true,
           fontWeight: FontWeight.w700,
           color: AppColors.primary,
-          onTap: () {},
+          onTap: () {
+            Go.toNamed(NamedRoutes.checkout);
+          },
         ),
       ],
     );

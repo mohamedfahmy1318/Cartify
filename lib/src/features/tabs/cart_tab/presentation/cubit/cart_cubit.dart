@@ -110,4 +110,11 @@ class CartCubit extends Cubit<CartState> {
       ),
     );
   }
+  // Check if product is in cart
+  bool isInCart(String productId) {
+    final products = state.cartResponseEntity?.data?.products;
+    if (products == null) return false;
+
+    return products.any((item) => item.product?.id == productId);
+  }
 }

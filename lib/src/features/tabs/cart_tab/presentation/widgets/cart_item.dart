@@ -84,7 +84,7 @@ class _CartItemState extends State<CartItem> {
     context.read<CartCubit>().removeCartItem(widget.cartItem.product!.id);
 
     // Show success message
-    MessageUtils.showSnackBar("Item removed from cart");
+    MessageUtils.showSnackBar("Item removed from cart", textColor: AppColors.white, backgroundColor: AppColors.primary);
   }
 
   void _updateQuantity(int newCount) {

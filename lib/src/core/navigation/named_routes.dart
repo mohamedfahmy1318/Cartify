@@ -6,7 +6,8 @@ enum NamedRoutes {
   viewAllBanners('/view-all-banners'),
   bannerProducts('/banner-products'),
   productDetail('/product-detail'),
-  viewAllProducts('/view-all-products');
+  viewAllProducts('/view-all-products'),
+  checkout('/checkout');
 
   final String routeName;
 

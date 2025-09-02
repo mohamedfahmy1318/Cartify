@@ -20,4 +20,6 @@ class ApiConstants {
   static const String getSubCategories = 'subcategories';
   //Cart
   static const String cart = 'cart';
+  //address
+  static const String addresses = 'addresses';
 }
