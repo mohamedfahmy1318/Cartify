@@ -22,4 +22,8 @@ class ApiConstants {
   static const String cart = 'cart';
   //address
   static const String addresses = 'addresses';
+  //orders
+  static const String orders = 'orders';
+  //change current password
+  static const String changePassword = 'users/changeMyPassword';
 }

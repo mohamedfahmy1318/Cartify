@@ -3,12 +3,12 @@ import 'package:full_ecommerce_app/src/features/checkout/domain/entities/address
 import 'package:full_ecommerce_app/src/features/checkout/domain/repo/check_out_repo.dart';
 import 'package:multiple_result/multiple_result.dart';
 
-class GetAllAddressUseCase {
-  final CheckoutRepository _repository;
+class DeleteAddressUseCase {
+  final CheckoutRepository repository;
 
-  GetAllAddressUseCase(this._repository);
+  DeleteAddressUseCase(this.repository);
 
-  Future<Result<AddressResponseEntity, Failure>> call() {
-    return _repository.getAllAddress();
+   Future<Result<AddressResponseEntity, Failure>> deleteAddress(String addressId)  {
+    return  repository.deleteAddress(addressId);
   }
 }

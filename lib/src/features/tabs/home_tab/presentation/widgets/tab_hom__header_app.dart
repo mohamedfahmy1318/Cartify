@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/extensions/sized_box_helper.dart';
-import 'package:full_ecommerce_app/src/core/helpers/location_services.dart';
+import 'package:full_ecommerce_app/src/core/helpers/location_notifier.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_search_app_field.dart';
-import 'package:geocoding/geocoding.dart';
 
 class TabHomeHeader extends StatefulWidget {
   final String titleSearch;
+  static String? currentLocation;
 
   const TabHomeHeader({super.key, required this.titleSearch});
 
@@ -20,10 +20,8 @@ class TabHomeHeader extends StatefulWidget {
 }
 
 class _TabHomeHeaderState extends State<TabHomeHeader> {
-  String? _currentLocation;
+  final _locationNotifier = LocationNotifier();
 
-  final _locationService = LocationService();
-  final _geocodingService = GeocodingService();
   @override
   void initState() {
     super.initState();
@@ -31,20 +29,10 @@ class _TabHomeHeaderState extends State<TabHomeHeader> {
   }
 
   Future<void> _fetchLocation() async {
-    final position = await _locationService.getCurrentPosition();
-    if (position != null) {
-      final address = await _geocodingService.getAddressFromLatLng(
-        position.latitude,
-        position.longitude,
-      );
-      setState(() {
-        _currentLocation = address ?? "Unknown Location";
-      });
-    } else {
-      setState(() {
-        _currentLocation = "Location Disabled";
-      });
-    }
+    await _locationNotifier.fetchLocation();
+    setState(() {
+      TabHomeHeader.currentLocation = _locationNotifier.value;
+    });
   }
 
   @override
@@ -62,7 +50,7 @@ class _TabHomeHeaderState extends State<TabHomeHeader> {
             ),
             const Spacer(),
             AppText(
-              _currentLocation ?? "Loading...",
+              TabHomeHeader.currentLocation ?? "Loading...",
               fontSize: FontSize.s13,
               fontWeight: FontWeightManager.medium,
               color: AppColors.grey,
@@ -121,20 +109,5 @@ class _TabHomeHeaderState extends State<TabHomeHeader> {
         ),
       ],
     );
-  }
-}
-
-class GeocodingService {
-  Future<String?> getAddressFromLatLng(double lat, double lng) async {
-    try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
-      if (placemarks.isNotEmpty) {
-        final place = placemarks.first;
-        return "${place.locality}, ${place.country}";
-      }
-    } catch (e) {
-      return null;
-    }
-    return null;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/navigation/named_routes.dart';
@@ -6,6 +7,7 @@ import 'package:full_ecommerce_app/src/core/navigation/navigator.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/core/widgets/buttons/default_button.dart';
 import 'package:full_ecommerce_app/src/features/tabs/cart_tab/domain/entities/cart_response_entity.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 
 class FooterWidgetCart extends StatelessWidget {
   const FooterWidgetCart({
@@ -18,6 +20,7 @@ class FooterWidgetCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        
         AppText(
           'Total: \$${cartEntity.totalCartPrice}',
           fontSize: 19.sp,
@@ -25,9 +28,11 @@ class FooterWidgetCart extends StatelessWidget {
           color: AppColors.black,
         ),
         const Spacer(),
-        DefaultButton(
-          title: 'Checkout',
-          fontSize: 15.sp,
+        context.read<CartCubit>().state.cartResponseEntity!.numOfCartItems == 0
+            ? const SizedBox.shrink()
+            : DefaultButton(
+                title: 'Checkout',
+                fontSize: 15.sp,
           width: 160.w,
           height: 35.h,
           isFitted: true,

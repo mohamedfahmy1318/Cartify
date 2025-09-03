@@ -4,15 +4,17 @@ class AddressResponseEntity extends Equatable {
   final int? results;
   final String? message;
   final List<AddressEntity>? data;
+  final String? status;
 
   const AddressResponseEntity({
     this.results,
     this.message,
     this.data,
+    this.status,
   });
 
   @override
-  List<Object?> get props => [results, message, data];
+  List<Object?> get props => [results, message, data, status];
 
 }
 class AddressEntity extends Equatable {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/extensions/sized_box_helper.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 
 class OrderSummaryWidget extends StatelessWidget {
   const OrderSummaryWidget({super.key});
@@ -40,12 +42,12 @@ class OrderSummaryWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppText(
-                'Items (4)',
+                'Items (${context.read<CartCubit>().state.cartResponseEntity!.numOfCartItems.toString()})',
                 fontSize: FontSize.s14,
                 color: AppColors.grey,
               ),
               AppText(
-                '\$299.96',
+                '${context.read<CartCubit>().state.cartResponseEntity!.data!.totalCartPrice.toString()} EGP',
                 fontSize: FontSize.s14,
                 fontWeight: FontWeightManager.medium,
                 color: AppColors.black,
@@ -106,7 +108,7 @@ class OrderSummaryWidget extends StatelessWidget {
                 color: AppColors.black,
               ),
               AppText(
-                '\$323.95',
+                '${context.read<CartCubit>().state.cartResponseEntity!.data!.totalCartPrice.toString()} EGP',
                 fontSize: FontSize.s18,
                 fontWeight: FontWeightManager.bold,
                 color: AppColors.primary,

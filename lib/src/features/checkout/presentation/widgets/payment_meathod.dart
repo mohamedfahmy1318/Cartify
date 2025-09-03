@@ -6,7 +6,12 @@ import 'package:full_ecommerce_app/src/core/extensions/sized_box_helper.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 
 class OrderPaymentMethod extends StatefulWidget {
-  const OrderPaymentMethod({super.key});
+  final Function(String)? onPaymentMethodChanged;
+  
+  const OrderPaymentMethod({
+    super.key,
+    this.onPaymentMethodChanged,
+  });
 
   @override
   State<OrderPaymentMethod> createState() => _OrderPaymentMethodState();
@@ -172,7 +177,10 @@ class _OrderPaymentMethodState extends State<OrderPaymentMethod> {
     setState(() {
       _selectedPaymentMethod = method;
     });
-    // You can add logic here to save the selected payment method
-    // or notify parent widgets about the selection change
+    
+    // Notify parent widget about the selection change
+    if (widget.onPaymentMethodChanged != null) {
+      widget.onPaymentMethodChanged!(method);
+    }
   }
 }

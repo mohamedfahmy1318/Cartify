@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/extensions/sized_box_helper.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
+import 'package:full_ecommerce_app/src/core/widgets/custom_messages.dart';
+import 'package:full_ecommerce_app/src/core/widgets/default_bottom_sheet.dart';
 import 'package:full_ecommerce_app/src/features/checkout/domain/entities/address_response_entity.dart';
+import 'package:full_ecommerce_app/src/features/checkout/presentation/cubits/address_cubit.dart';
 import 'package:full_ecommerce_app/src/features/checkout/presentation/widgets/add_delete_btn.dart';
+import 'package:full_ecommerce_app/src/features/checkout/presentation/widgets/add_address_btn_sheet.dart';
 
 class CustomCardAddress extends StatelessWidget {
   const CustomCardAddress({
@@ -19,6 +24,27 @@ class CustomCardAddress extends StatelessWidget {
   final bool isSelected;
   final Function(int) onAddressSelected;
   final AddressEntity addressEntity;
+
+  void _editAddress(BuildContext context) {
+    showDefaultBottomSheet(
+      context: context,
+      child: BlocProvider.value(
+        value: context.read<AddressCubit>(),
+        child: AddAddressBottomSheet(
+          addressToEdit: addressEntity,
+        ),
+      ),
+    );
+  }
+
+  void _deleteAddress(BuildContext context) {
+    try {
+      context.read<AddressCubit>().deleteAddress(addressEntity.id ?? "");
+      MessageUtils.showSnackBar('Address deleted successfully');
+    } catch (e) {
+      MessageUtils.showSnackBar('Failed to delete address: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,94 +63,96 @@ class CustomCardAddress extends StatelessWidget {
           ),
           child: Padding(
             padding: EdgeInsets.all(12.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Radio button and address info row
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Radio<int>(
-                    value: addressIndex,
-                    groupValue: isSelected ? addressIndex : -1,
-                    onChanged: (value) {
-                      if (value != null) {
-                        onAddressSelected(value);
-                      }
-                    },
-                    activeColor: AppColors.white,
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  6.szW,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        AppText(
-                          addressEntity.name??"No Name",
-                          fontSize: 13.sp,
-                          color: AppColors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        2.szH,
-                        AppText(
-                          addressEntity.city??"No City",
-                          fontSize: 11.sp,
-                          color: AppColors.white.withOpacity(0.9),
-                          fontWeight: FontWeight.w400,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                         2.szH,
-                        AppText(
-                          addressEntity.details??"No Details",
-                          fontSize: 11.sp,
-                          color: AppColors.white.withOpacity(0.9),
-                          fontWeight: FontWeight.w400,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        2.szH,
-                        AppText(
-                          addressEntity.phone??"No Phone",
-                          fontSize: 11.sp,
-                          color: AppColors.white.withOpacity(0.9),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Radio button and address info row
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Radio<int>(
+                      value: addressIndex,
+                      groupValue: isSelected ? addressIndex : -1,
+                      onChanged: (value) {
+                        if (value != null) {
+                          onAddressSelected(value);
+                        }
+                      },
+                      activeColor: AppColors.white,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     ),
-                  ),
-                ],
-              ),
+                    6.szW,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          AppText(
+                            addressEntity.name ?? "No Name",
+                            fontSize: 13.sp,
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          2.szH,
+                          AppText(
+                            addressEntity.city ?? "No City",
+                            fontSize: 11.sp,
+                            color: AppColors.white.withOpacity(0.9),
+                            fontWeight: FontWeight.w400,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          2.szH,
+                          AppText(
+                            addressEntity.details ?? "No Details",
+                            fontSize: 11.sp,
+                            color: AppColors.white.withOpacity(0.9),
+                            fontWeight: FontWeight.w400,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          2.szH,
+                          AppText(
+                            addressEntity.phone ?? "No Phone",
+                            fontSize: 11.sp,
+                            color: AppColors.white.withOpacity(0.9),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
 
-              15.szH,
-              // Action buttons row
-              Row(
-                children: [
-                  Expanded(
-                    child: AddAndRemoveButton(
-                      title: 'Edit',
-                      onTap: () {
-                        // Handle edit button tap
-                      },
+                15.szH,
+                // Action buttons row
+                Row(
+                  children: [
+                    Expanded(
+                      child: AddAndRemoveButton(
+                        title: 'Edit',
+                        onTap: () {
+                          // Handle edit button tap
+                          _editAddress(context);
+                        },
+                      ),
                     ),
-                  ),
-                  8.szW,
-                  Expanded(
-                    child: AddAndRemoveButton(
-                      title: 'Delete',
-                      onTap: () {
-                        // Handle remove button tap
-                      },
+                    8.szW,
+                    Expanded(
+                      child: AddAndRemoveButton(
+                        title: 'Delete',
+                        onTap: () {
+                          // Delete address directly with success message
+                          _deleteAddress(context);
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
-      ),
       ),
     );
   }

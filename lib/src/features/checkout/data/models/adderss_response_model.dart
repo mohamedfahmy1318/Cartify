@@ -12,12 +12,14 @@ class AddressResponseModel extends AddressResponseEntity {
     super.results,
     super.message,
     super.data,
+    super.status,
   });
 
   factory AddressResponseModel.fromJson(Map<String, dynamic> json) {
     return AddressResponseModel(
-      results: json['results'] as int? ?? 0,
+      results: json['results'] as int? ?? (json['data'] as List?)?.length ?? 0,
       message: json['message'] as String? ?? '',
+      status: json['status'] as String? ?? '',
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => AddressModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -28,6 +30,7 @@ class AddressResponseModel extends AddressResponseEntity {
     return {
       'results': results,
       'message': message,
+      'status': status,
       'data': data?.map((e) => (e as AddressModel).toJson()).toList(),
     };
   }
@@ -36,6 +39,7 @@ class AddressResponseModel extends AddressResponseEntity {
     return AddressResponseEntity(
       results: results,
       message: message,
+      status: status,
       data: data?.map((e) => (e as AddressModel).toEntity()).toList(),
     );
   }

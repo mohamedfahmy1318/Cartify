@@ -91,8 +91,18 @@ class $AssetsPngGen {
   /// File path: assets/png/banner4.png
   AssetGenImage get banner4 => const AssetGenImage('assets/png/banner4.png');
 
+  /// File path: assets/png/icon_profile.png
+  AssetGenImage get iconProfile =>
+      const AssetGenImage('assets/png/icon_profile.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [baner1, baner2, baner3, banner4];
+  List<AssetGenImage> get values => [
+    baner1,
+    baner2,
+    baner3,
+    banner4,
+    iconProfile,
+  ];
 }
 
 class $AssetsSvgGen {
@@ -104,15 +114,12 @@ class $AssetsSvgGen {
   /// File path: assets/svg/fav.svg
   SvgGenImage get fav => const SvgGenImage('assets/svg/fav.svg');
 
-  /// File path: assets/svg/logo.svg
-  SvgGenImage get logo => const SvgGenImage('assets/svg/logo.svg');
-
   /// File path: assets/svg/upload-image.svg
   SvgGenImage get uploadImage =>
       const SvgGenImage('assets/svg/upload-image.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [camera, fav, logo, uploadImage];
+  List<SvgGenImage> get values => [camera, fav, uploadImage];
 }
 
 class $AssetsTranslationsGen {

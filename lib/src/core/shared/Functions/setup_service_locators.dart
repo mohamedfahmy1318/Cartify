@@ -9,6 +9,7 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/di/barnd_pr
 import 'package:full_ecommerce_app/src/features/checkout/di/checkout_di.dart';
 import 'package:full_ecommerce_app/src/features/tabs/cart_tab/di/cart_di.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/di/home_tab_di.dart';
+import 'package:full_ecommerce_app/src/features/tabs/profile_tab/di/profile_tab_di.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/di/fav_di.dart';
 
 import '../../../config/res/constants_manager.dart';
@@ -23,6 +24,7 @@ void setUpServiceLocator() {
   favoritesProductsDI();
   cartDI(); 
   checkoutDI();
+  profileDI();
 }
 
 void setUpGeneralDependencies() {

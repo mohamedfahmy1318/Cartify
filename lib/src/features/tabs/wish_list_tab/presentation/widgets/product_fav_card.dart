@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:full_ecommerce_app/src/config/res/app_sizes.dart';
 import 'package:full_ecommerce_app/src/config/res/color_manager.dart';
 import 'package:full_ecommerce_app/src/core/widgets/app_text.dart';
 import 'package:full_ecommerce_app/src/core/widgets/image_widgets/cached_image.dart';
+import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/domain/entities/fav_entity.dart';
 
 class ProductFavCard extends StatelessWidget {
@@ -166,6 +168,14 @@ class ProductFavCard extends StatelessWidget {
                       ),
 
                       // Add to Cart Button
+                      context.watch<CartCubit>().isInCart(favEntity.id ?? '')
+                          ? AppText(
+                              'In Cart',
+                              fontSize: FontSize.s14,
+                              color: AppColors.primary,
+                              fontWeight: FontWeightManager.bold,
+                            )
+                          :
                       GestureDetector(
                         onTap: onAddToCart,
                         child: Container(
