@@ -5,6 +5,7 @@ import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_loading.dart';
 import 'package:full_ecommerce_app/src/core/widgets/custom_sliver_header_delegat.dart';
 import 'package:full_ecommerce_app/src/core/widgets/not_contain_data.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_searh_header.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/tab_hom__header_app.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_state.dart';
@@ -55,7 +56,7 @@ class _FavoritesTabViewBodyState extends State<FavoritesTabViewBody> {
               child: Container(
                 color: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: const TabHomeHeader(
+                child: const CustomHeader(
                   titleSearch: ' Favorites products...',
                 ),
               ),
@@ -75,7 +76,7 @@ class _FavoritesTabViewBodyState extends State<FavoritesTabViewBody> {
             child: Container(
               color: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: const TabHomeHeader(titleSearch: ' Favorites products...'),
+              child: const CustomHeader(titleSearch: ' Liked Products...'),
             ),
           ),
         ),

@@ -10,6 +10,7 @@ import 'package:full_ecommerce_app/src/features/banners_products_tab/presentatio
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/cubit/home_tab_state.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/category_item.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_searh_header.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/tab_hom__header_app.dart';
 import 'package:full_ecommerce_app/src/features/tabs/wish_list_tab/presentation/cubit/fav_cubit.dart';
 
@@ -79,7 +80,7 @@ class _CategoriesTabBodyState extends State<CategoriesTabBody>
 
           return Column(
             children: [
-              const TabHomeHeader(titleSearch: 'Search Products'),
+              const CustomHeader(titleSearch: 'All Categories'),
 
               // ----- Categories Tabs -----
               TabBar(

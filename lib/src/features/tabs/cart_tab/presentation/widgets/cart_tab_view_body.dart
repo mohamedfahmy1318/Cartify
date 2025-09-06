@@ -12,6 +12,7 @@ import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/widge
 import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/widgets/fotter_widget_cart.dart';
 import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_cubit.dart';
 import 'package:full_ecommerce_app/src/features/tabs/cart_tab/presentation/cubit/cart_state.dart';
+import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/custom_searh_header.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/presentation/widgets/tab_hom__header_app.dart';
 import 'package:lottie/lottie.dart';
 
@@ -84,7 +85,7 @@ class _CartTabViewBodyState extends State<CartTabViewBody> {
     }
     return Column(
       children: [
-        const TabHomeHeader(titleSearch: 'Search in cart'),
+        const CustomHeader(titleSearch: 'Review Cart'),
         SizedBox(height: 14.h),
         const Expanded(child: CartListView()),
         SizedBox(height: 14.h),

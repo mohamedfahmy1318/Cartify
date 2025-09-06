@@ -1,3 +1,6 @@
+
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:full_ecommerce_app/src/core/shared/base_state.dart';
 import 'package:full_ecommerce_app/src/features/tabs/home_tab/domain/use_cases/get_category_use_case.dart';
@@ -117,7 +120,11 @@ class HomeTabCubit extends Cubit<HomeTabState> {
   }
 
   // ------------------- PRODUCTS ------------
-  void fetchProducts({int? limit , String? categoryId, String? subCategoryId}) async {
+  void fetchProducts({
+    int? limit,
+    String? categoryId,
+    String? subCategoryId,
+  }) async {
     emit(state.copyWith(productsStatus: BaseStatus.loading));
 
     final params = GetProductsParams(
@@ -134,6 +141,7 @@ class HomeTabCubit extends Cubit<HomeTabState> {
         state.copyWith(
           productsStatus: BaseStatus.success,
           products: success.data,
+          allProducts: success.data, // حفظ جميع المنتجات
           currentPage: success.metadata.currentPage,
           totalPages: success.metadata.numberOfPages,
           totalResults: success.results,
@@ -164,14 +172,16 @@ class HomeTabCubit extends Cubit<HomeTabState> {
 
     result.when(
       (success) {
-        final updatedProducts = List.of(state.products)..addAll(success.data);
+        final updatedAll = List.of(state.products)..addAll(success.data);
 
         emit(
           state.copyWith(
-            products: updatedProducts,
+            products: updatedAll,
+            allProducts: updatedAll,
             currentPage: success.metadata.currentPage,
             totalPages: success.metadata.numberOfPages,
             totalResults: success.results,
+
             hasNextPage: success.metadata.nextPage != null,
             isLoadingMore: false,
           ),
@@ -199,27 +209,28 @@ class HomeTabCubit extends Cubit<HomeTabState> {
 
     fetchProducts(limit: limit);
   }
+
   /// جلب SubCategories
-void fetchSubCategories(String categoryId) async {
-  emit(state.copyWith(subCategoriesStatus: BaseStatus.loading));
+  void fetchSubCategories(String categoryId) async {
+    emit(state.copyWith(subCategoriesStatus: BaseStatus.loading));
 
-  final result = await getSubCategoryUseCase.call(categoryId);
+    final result = await getSubCategoryUseCase.call(categoryId);
 
-  result.when(
-    (success) => emit(
-      state.copyWith(
-        subCategoriesStatus: BaseStatus.success,
-        subCategories: success.data,
+    result.when(
+      (success) => emit(
+        state.copyWith(
+          subCategoriesStatus: BaseStatus.success,
+          subCategories: success.data,
+        ),
       ),
-    ),
-    (error) => emit(
-      state.copyWith(
-        subCategoriesStatus: BaseStatus.error,
-        subCategoriesErrorMessage: error.message,
+      (error) => emit(
+        state.copyWith(
+          subCategoriesStatus: BaseStatus.error,
+          subCategoriesErrorMessage: error.message,
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 
   /// تحميل جميع البيانات (Categories + Banners)
   void fetchHomeData({int? categoriesLimit, int bannersLimit = 5}) {
@@ -227,4 +238,56 @@ void fetchSubCategories(String categoryId) async {
     fetchBanners(limit: bannersLimit);
     fetchProducts(limit: 8);
   }
+  //search
+    Timer? _searchDebounce;
+
+  // استدعاء عند كل تغيير في الـ TextField
+  void onSearchChanged(String query) {
+    _searchDebounce?.cancel();
+    _searchDebounce = Timer(const Duration(milliseconds: 300), () {
+      _searchLocal(query);
+    });
+  }
+
+  void _searchLocal(String query) {
+    final q = _normalize(query);
+    if (q.isEmpty) {
+      emit(state.copyWith(products: state.allProducts, searchQuery: ''));
+      return;
+    }
+
+    final filtered = state.allProducts.where((p) {
+      final name = _normalize(p.title);
+      final brand = _normalize(p.brand.name );
+      final category = _normalize(p.category.name );
+      final sku = _normalize(p.price.toString());
+      // ضيف أي حقول تانية تحب تبحث فيها (desc, tags...)
+      return name.contains(q) ||
+             brand.contains(q) ||
+             category.contains(q) ||
+             sku.contains(q);
+    }).toList();
+
+    emit(state.copyWith(products: filtered, searchQuery: query));
+  }
+
+  String _normalize(String s) {
+    var r = s.trim().toLowerCase();
+    // ازالة التشكيل (تقدر تحسّن regex لو عايز)
+    r = r.replaceAll(RegExp('[\\u0610-\\u061A\\u064B-\\u065F\\u0670\\u06D6-\\u06ED]'), '');
+    // تبسيط الحروف العربية
+    r = r.replaceAll('أ', 'ا').replaceAll('إ', 'ا').replaceAll('آ', 'ا');
+    r = r.replaceAll('ى', 'ي').replaceAll('ة', 'ه');
+    // ازالة علامات خاصة
+    r = r.replaceAll(RegExp(r'[^0-9a-z\u0621-\u064A\s]'), ' ');
+    r = r.replaceAll(RegExp(r'\s+'), ' ');
+    return r;
+  }
+
+  @override
+  Future<void> close() {
+    _searchDebounce?.cancel();
+    return super.close();
+  }
+
 }

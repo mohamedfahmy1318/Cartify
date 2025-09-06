@@ -19,6 +19,8 @@ final class HomeTabState extends Equatable {
   final BaseStatus productsStatus;
   final List<ProductEntity> products;
   final String productsErrorMessage;
+  final List<ProductEntity> allProducts;
+  final String searchQuery;
   //subCategory
   final BaseStatus subCategoriesStatus;
   final List<SubCategoryEntity> subCategories;
@@ -44,6 +46,8 @@ final class HomeTabState extends Equatable {
     required this.productsStatus,
     required this.products,
     this.productsErrorMessage = ConstantManager.emptyText,
+    this.allProducts = const [],
+    this.searchQuery = '',
     //subCategories
     required this.subCategoriesStatus,
     required this.subCategories,
@@ -66,6 +70,8 @@ final class HomeTabState extends Equatable {
       products: [],
       subCategoriesStatus: BaseStatus.initial,
       subCategories: [],
+      allProducts: [],
+      searchQuery: '',
     );
   }
 
@@ -83,6 +89,8 @@ final class HomeTabState extends Equatable {
     BaseStatus? productsStatus,
     List<ProductEntity>? products,
     String? productsErrorMessage,
+     List<ProductEntity>? allProducts,
+  String? searchQuery,
     //subcategories
     BaseStatus? subCategoriesStatus,
     List<SubCategoryEntity>? subCategories,
@@ -111,6 +119,8 @@ final class HomeTabState extends Equatable {
       productsStatus: productsStatus ?? this.productsStatus,
       products: products ?? this.products,
       productsErrorMessage: productsErrorMessage ?? this.productsErrorMessage,
+    allProducts: allProducts ?? this.allProducts,
+    searchQuery: searchQuery ?? this.searchQuery,
       //subcategories
       subCategoriesStatus: subCategoriesStatus ?? this.subCategoriesStatus,
       subCategories: subCategories ?? this.subCategories,
@@ -144,6 +154,10 @@ final class HomeTabState extends Equatable {
     subCategoriesStatus,
     subCategories,
     subCategoriesErrorMessage,
+    // All Products
+    allProducts,
+    // Search Query
+    searchQuery,
 
     // Pagination
     currentPage,
